@@ -1,114 +1,443 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!doctype html>
+<html lang="en">
 
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<title>Beta Airlines - Dashboard</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f4f4f4;
-    }
-    .header {
-        background-color: rgb(17 23 43);
-        color: white;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        border: 4px solid rgb(25, 40, 89);
-    }
-    .header img {
-        height: 65px;
-        width: 200px;
-    }
-    .header div {
-        display: flex;
-        align-items: center;
-    }
-    .header h1 {
-        margin: 0;
-        flex-grow: 1;
-        text-align: center;
-        color: rgb(224 25 51);
-        font-size: 3em;
-    }
-    .header .user {
-        margin-right: 30px;
-        font-size: 20px;
-    }
-    .nav {
-        background-color: rgb(17 23 43);
-        color: white;
-        width: 200px;
-        height: 100vh;
-        position: fixed;
-        padding-top: 60px;
-        border: 4px solid rgb(25, 40, 89);
-    }
-    .nav h2 {
-        text-align: center;
-        font-size: 1.5em;
-        margin: 5px 10px;
-    }
-    .nav a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        padding: 15px 15px;
-        font-size: 18px;
-    }
-    .nav a:hover {
-        background-color: #003366;
-    }
-    .content {
-        margin-left: 200px;
-        padding: 120px 20px 20px 20px; /* Padding adjusted for fixed header */
-        height: 81vh;
-        background-image: url('/images/index.jpg');
-        background-size: cover;
-    }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fligth Management System</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
+
 <body>
+  <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+      data-sidebar-position="fixed" data-header-position="fixed">
+      <!-- Sidebar Start -->
+      <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div>
+          <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="./index.html" class="text-nowrap logo-img">
+              <img src="../assets/images/logos/bird_2.jpg" width="180" alt="" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+              <i class="ti ti-x fs-8"></i>
+            </div>
+          </div>
 
-<div class="header">
-    <div>
-        <img src="/images/logo.png" alt="Delta Airlines Logo">
+          <!-- Sidebar navigation-->
+          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+
+
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Home</span>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/index" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-layout-dashboard"></i>
+                  </span>
+                  <span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">SERVICES</span>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/addAirport">
+                  <span>
+                    <i class="ti ti-square-plus"></i>
+                  </span>
+                  <span class="hide-menu">Add Airports</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/modifyAirport">
+                  <span>
+                    <i class="ti ti-current-location"></i>
+                  </span>
+                  <span class="hide-menu">Modify Airports</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewAirports">
+                  <span>
+                    <i class="ti ti-location"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Airport</span>
+                </a>
+              </li>
+
+
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/addFlight">
+                  <span>
+                    <i class="ti ti-square-plus"></i>
+                  </span>
+                  <span class="hide-menu">Add Flights</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/modifyFlight">
+                  <span>
+                    <i class="ti ti-plane-tilt"></i>
+                  </span>
+                  <span class="hide-menu">Modify Flights</span>
+                </a>
+              </li><li class="sidebar-item">
+                <a class="sidebar-link" href="/viewFlights">
+                  <span>
+                    <i class="ti ti-plane"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Flight</span>
+                </a>
+              </li>
+
+
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/route">
+                  <span>
+                    <i class="ti ti-square-plus"></i>
+                  </span>
+                  <span class="hide-menu">Add Route</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewRoutes" >
+                  <span>
+                    <i class="ti ti-route"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Route</span>
+                </a>
+              </li>
+
+
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-brand-booking"></i>
+                  </span>
+                  <span class="hide-menu">Book Flight</span>
+                </a>
+              </li>
+
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
+                  <span>
+                    <i class="ti ti-ticket"></i>
+                  </span>
+                  <span class="hide-menu">Your Bookings</span>
+                </a>
+              </li>
+            </ul>
+
+
+            <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+              <div class="d-flex">
+                <div class="unlimited-access-title me-3">
+                <div class="unlimited-access-img">
+                  <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
+                </div>
+              </div>
+            </div>
+          </nav>
+          <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+      <!--  Sidebar End -->
+      <!--  Main wrapper -->
+      <div class="body-wrapper">
+        <!--  Header Start -->
+        <header class="app-header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-xl-none">
+                <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                  <i class="ti ti-menu-2"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                  <i class="ti ti-bell-ringing"></i>
+                  <div class="notification bg-primary rounded-circle"></div>
+                </a>
+              </li>
+            </ul>
+            <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+              <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                <li class="nav-item dropdown">
+                  <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                    <div class="message-body">
+                      <a href="/viewBooking" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-user fs-6"></i>
+                        <p class="mb-0 fs-3">My Profile</p>
+                      </a>
+                      <a href="/about" class="d-flex align-items-center gap-2 dropdown-item">
+                        <i class="ti ti-mood-happy"></i>
+                        <p class="mb-0 fs-3">About Us</p>
+                      </a>
+                      <a href="/loginpage" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <!--  Header End -->
+
+
+      <div class="container-fluid">
+        <!--  Row 1 -->
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-strech">
+            <div class="card w-100">
+              <div class="card-body">
+                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
+                  <div class="mb-3 mb-sm-0">
+                    <h5 class="card-title fw-semibold">Bookings Overview</h5>
+                  </div>
+                  <div>
+                    <select class="form-select">
+                      <option value="1">March 2023</option>
+                      <option value="2">April 2023</option>
+                      <option value="3">May 2023</option>
+                      <option value="4">June 2023</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="chart"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <!-- Yearly Breakup -->
+                <div class="card overflow-hidden">
+                  <div class="card-body p-4">
+                    <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+                    <div class="row align-items-center">
+                      <div class="col-8">
+                        <h4 class="fw-semibold mb-3"><i class="ti ti-currency-rupee fs-6"></i>36,358</h4>
+                        <div class="d-flex align-items-center mb-3">
+                          <span
+                            class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-arrow-up-left text-success"></i>
+                          </span>
+                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="fs-3 mb-0">last year</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                          <div class="me-4">
+                            <span class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
+                            <span class="fs-2">2024</span>
+                          </div>
+                          <div>
+                            <span class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
+                            <span class="fs-2">2023</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-center">
+                          <div id="breakup"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <!-- Monthly Earnings -->
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row alig n-items-start">
+                      <div class="col-8">
+                        <h5 class="card-title mb-9 fw-semibold"> Special Discount </h5>
+                        <h4 class="fw-semibold mb-3">Upto 20%</h4>
+                        <div class="d-flex align-items-center pb-1">
+                          <span
+                            class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-arrow-down-right text-danger"></i>
+                          </span>
+                          <p class="text-dark me-1 fs-3 mb-0">+9%</p>
+                          <p class="fs-3 mb-0">last year</p>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-end">
+                          <div
+                            class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
+                            <i class="ti ti-currency-rupee fs-6"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="earning"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="card w-100">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h5 class="card-title fw-semibold">Recent Flight</h5>
+                </div>
+                <ul class="timeline-widget mb-0 position-relative mb-n5">
+                  <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                      <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
+                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1"> Gamma Flight</div>
+                  </li>
+                  <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                      <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
+                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">Theta airline <a
+                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
+                    </div>
+                  </li>
+                  <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                      <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
+                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1">Theta airline</div>
+                  </li>
+                  <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">04:30 pm</div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                      <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
+                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">Alpha <a
+                        href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
+                    </div>
+                  </li>
+                  <li class="timeline-item d-flex position-relative overflow-hidden">
+                    <div class="timeline-time text-dark flex-shrink-0 text-end">06:30 pm</div>
+                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
+                      <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
+                      <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                    </div>
+                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">Omega planes</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        
+          
+        <div class="row">
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="position-relative">
+                <a href="javascript:void(0)"><img src="../assets/images/products/s4.jpg" class="card-img-top rounded-0" alt="..."></a>
+                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Omega Planes</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0"><i class="ti ti-currency-rupee fs-6"></i>1,000 <span class="ms-2 fw-normal text-muted fs-3"><del>1,200</del></span></h6>
+                  <ul class="list-unstyled d-flex align-items-center mb-0">
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="position-relative">
+                <a href="javascript:void(0)"><img src="../assets/images/products/s5.jpg" class="card-img-top rounded-0" alt="..."></a>
+                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Gamma Flight</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0"><i class="ti ti-currency-rupee fs-6"></i>6,000 <span class="ms-2 fw-normal text-muted fs-3"><del>9,000</del></span></h6>
+                  <ul class="list-unstyled d-flex align-items-center mb-0">
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="position-relative">
+                <a href="javascript:void(0)"><img src="../assets/images/products/s7.jpg" class="card-img-top rounded-0" alt="..."></a>
+                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">BetaGo</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0"><i class="ti ti-currency-rupee fs-6"></i>15,000 <span class="ms-2 fw-normal text-muted fs-3"><del>20,000</del></span></h6>
+                  <ul class="list-unstyled d-flex align-items-center mb-0">
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xl-3">
+            <div class="card overflow-hidden rounded-2">
+              <div class="position-relative">
+                <a href="javascript:void(0)"><img src="../assets/images/products/s11.jpg" class="card-img-top rounded-0" alt="..."></a>
+                <a href="javascript:void(0)" class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i class="ti ti-basket fs-4"></i></a>                      </div>
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Alpha</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0"><i class="ti ti-currency-rupee fs-6"></i>7000 <span class="ms-2 fw-normal text-muted fs-3"><del>8000</del></span></h6>
+                  <ul class="list-unstyled d-flex align-items-center mb-0">
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                    <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <h1>BETA AIRLINES</h1>
-    <div class="user">
-        Welcome ${sessionScope.user.username}
-    </div>
-</div>
-
-<div class="nav">
-    <h2>DashBoard</h2>
-    <a href="/addAirport">Add Airport</a>
-    <a href="/viewAirports">View All Airports</a>
-    <a href="/modifyAirport">Modify Airport Details</a>
-    <a href="/addFlight">Add Flight Details</a>
-    <a href="/viewFlights">View Flight Details</a>
-    <a href="/modifyFlight">Modify Flight Details</a>
-    <a href="/route">Add New Route</a>
-    <a href="/viewRoutes">View Routes</a>
-    <a href="/searchFlight">Book Flight</a>
-    <a href="/viewBooking">View Bookings</a>
-    <a href="/aboutUs">About Us</a>
-    <a href="/betaAirline">Logout</a>
-</div>
-
-<div class="content">
-    <!-- Content goes here -->
-</div>
-
+  </div>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/sidebarmenu.js"></script>
+  <script src="../assets/js/app.min.js"></script>
+  <script src="../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
 </body>
+
 </html>

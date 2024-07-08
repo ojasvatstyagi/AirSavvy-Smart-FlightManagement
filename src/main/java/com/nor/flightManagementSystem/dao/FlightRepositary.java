@@ -11,5 +11,5 @@ import com.nor.flightManagementSystem.bean.Flight;
 public interface FlightRepositary extends JpaRepository<Flight, Long> {
 	
 	@Query("SELECT f FROM Flight f WHERE routeId = ?1")
-	public List<Flight> findFlightsByRouteId(Long routeId);
+    List<Flight> findFlightsByRouteId(Long routeId);
 }

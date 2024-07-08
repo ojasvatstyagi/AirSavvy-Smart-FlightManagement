@@ -1,98 +1,66 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!doctype html>
+<html lang="en">
 
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<title>SignIn Page</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        background: url('/images/login.jpg') no-repeat center center fixed;
-        background-size: cover; 
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .container {
-        text-align: center;
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    header {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-    label {
-        font-size: 18px;
-        margin-bottom: 5px;
-        display: block;
-    }
-    input[type="text"], input[type="password"] {
-        width: 80%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 18px;
-        color: #fff;
-        background-color: #007bff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    footer {
-        margin-top: 20px;
-        font-size: 14px;
-    }
-    .error-message {
-        color: red;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-    a {
-        color: #007bff;
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGN IN</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
+
 <body>
-<div class="container">
-    <header>Flight Reservation System SignIn</header>
-    
-    <div class="error-message">${error}</div> <!-- Placeholder for error message -->
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <div
+      class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+              <div class="card-body">
+                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                  <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                </a>
+                <h3 class="text-center">Flight Management System</h3>
+				<p class="text-center">Sign In to your account</p>
 
-    <form:form action="/login" method="post">
-        <label for="username">UserName:</label>
-        <input type="text" id="username" name="username" required>
+                <form action="/login" method="post">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                  </div>
+                  <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div class="form-check">
+                      <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+                      <label class="form-check-label text-dark" for="flexCheckChecked">
+                        Remeber this Device
+                      </label>
+                    </div>
+                    <a class="text-primary fw-bold" href="#">Forgot Password ?</a>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="fs-4 mb-0 fw-bold">Don't have Account?</p>
+                    <a class="text-primary fw-bold ms-2" href="/register">Create an account</a>
+                  </div>
+                </form>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
 
-        <button type="submit">Login</button>
-        <br/>
-    </form:form>
-    <a href="/register">Create New Account</a>
-
-    <footer>Flight Reservation System 2024 | <a href="aboutUs.jsp">About Us</a></footer>
-</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

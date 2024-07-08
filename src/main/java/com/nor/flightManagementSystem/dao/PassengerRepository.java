@@ -8,6 +8,6 @@ import com.nor.flightManagementSystem.bean.Passenger;
 import com.nor.flightManagementSystem.bean.TicketPassengerEmbed;
 
 public interface PassengerRepository extends JpaRepository<Passenger, TicketPassengerEmbed> {
-    public List<Passenger> findByEmbeddedId_TicketNumber(Long ticketNumber);
+    List<Passenger> findByEmbeddedId_TicketNumber(Long ticketNumber);
 }
 

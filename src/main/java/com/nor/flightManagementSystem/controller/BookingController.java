@@ -57,13 +57,13 @@ public class BookingController {
         String toAirport = airportDao.findAirportCodeByLocation(destinationAirport);
 
         if (fromAirport == null || toAirport == null) {
-            ModelAndView mv = new ModelAndView("routeErrorPage");
+            ModelAndView mv = new ModelAndView("errorPage");
             mv.addObject("message", "Invalid source or destination airport code.");
             return mv;
         }
 
         if (fromAirport.equalsIgnoreCase(toAirport)) {
-            ModelAndView mv = new ModelAndView("routeErrorPage");
+            ModelAndView mv = new ModelAndView("errorPage");
             mv.addObject("message", "Source and destination airport codes cannot be the same.");
             return mv;
         }
@@ -71,7 +71,7 @@ public class BookingController {
         Route route = routeDao.findRouteBySourceAndDestination(fromAirport, toAirport);
 
         if (route == null) {
-            ModelAndView mv = new ModelAndView("routeErrorPage");
+            ModelAndView mv = new ModelAndView("errorPage");
             mv.addObject("message", "No route found between the specified airports.");
             return mv;
         }
@@ -101,14 +101,14 @@ public class BookingController {
 
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(@RequestParam("routeId") Long routeId,
-                             @RequestParam("flightNumber") Long flightNumber,
-                             @RequestParam("flightName") String flightName,
-                             @RequestParam("price") Double price,
-                             @RequestParam("passengerName") List<String> passengerNames,
-                             @RequestParam("passengerDob") List<String> passengerDobs) {
+                                   @RequestParam("flightNumber") Long flightNumber,
+                                   @RequestParam("flightName") String flightName,
+                                   @RequestParam("price") Double price,
+                                   @RequestParam("passengerName") List<String> passengerNames,
+                                   @RequestParam("passengerDob") List<String> passengerDobs) {
 
         if (passengerNames.isEmpty() || passengerNames.size() != passengerDobs.size()) {
-            ModelAndView mv = new ModelAndView("bookingErrorPage");
+            ModelAndView mv = new ModelAndView("errorPage");
             mv.addObject("message", "Passenger details are incomplete.");
             return mv;
         }
@@ -153,7 +153,8 @@ public class BookingController {
 
         // Update the seat count
         Flight flight = flightDao.viewFlight(flightNumber);
-        flight.setSeatsBooked(flight.getSeatsBooked() + passengersCount);
+        int currentSeatsBooked = (flight.getSeatsBooked() != null) ? flight.getSeatsBooked() : 0;
+        flight.setSeatsBooked(currentSeatsBooked + passengersCount);
         flightDao.addFlight(flight);
 
         ModelAndView mv = new ModelAndView("ticket");
@@ -165,5 +166,27 @@ public class BookingController {
     private int calculateAge(String dob) {
         LocalDate birthDate = LocalDate.parse(dob);
         return Period.between(birthDate, LocalDate.now()).getYears();
+    }
+    
+ // This method shows the initial form page
+    @GetMapping("/viewBooking")
+    public ModelAndView showBookingForm() {
+        return new ModelAndView("viewTicket");
+    }
+
+    // This method handles the form submission and shows the ticket details
+    @PostMapping("/viewBooking")
+    public ModelAndView viewBooking(@RequestParam("ticketNumber") Long ticketNumber) {
+        Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
+        ModelAndView mv = new ModelAndView("viewTicket");
+        mv.addObject("ticket", ticket);
+        mv.addObject("passengers", passengerDao.findByTicketNumber(ticketNumber));
+        return mv;
+    }
+    
+    @PostMapping("/cancelBooking")
+    public ModelAndView deleteAirport(@RequestParam("ticketNumber") Long ticketNumber) {
+    	ticketDao.deleteByTicketNumber(ticketNumber);
+    	return new ModelAndView("index"); 
     }
 }

@@ -21,6 +21,11 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder bCrypt;
 
+    @GetMapping("/fms")
+    public ModelAndView showHomePage() {
+        return new ModelAndView("home");
+    }
+
     @GetMapping("/register")
     public ModelAndView showUserRegistrationPage() {
         FlightUser user = new FlightUser();
@@ -37,16 +42,12 @@ public class LoginController {
         newUser.setPassword(encodedPassword);
         newUser.setType(user.getType());
         service.save(newUser);
-        return new     ModelAndView("loginPage");
+        return new ModelAndView("loginPage");
     }
 
     @GetMapping("/loginpage")
-    public ModelAndView showLoginPage(@RequestParam(value = "error", required = false) String error) {
-        ModelAndView mv = new ModelAndView("loginPage");
-        if (error != null) {
-            mv.addObject("error", "Invalid username or password.");
-        }
-        return mv;
+    public ModelAndView showLoginPage() {
+        return new ModelAndView("loginPage");
     }
     
 }

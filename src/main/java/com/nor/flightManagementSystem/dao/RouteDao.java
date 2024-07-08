@@ -5,10 +5,10 @@ import java.util.List;
 import com.nor.flightManagementSystem.bean.Route;
 
 public interface RouteDao {
-	public void save(Route route);
-	public List<Route> findAllRoutes();
-	public Route findRouteById(Long id);
-	public Route findRouteBySourceAndDestination(String source, String destination);
-	public Long generateRouteId();
-	public List<Long> findAllRoutesId();
+	void save(Route route);
+	List<Route> findAllRoutes();
+	Route findRouteById(Long id);
+	Route findRouteBySourceAndDestination(String source, String destination);
+	Long generateRouteId();
+	List<Long> findAllRoutesId();
 }

@@ -27,21 +27,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Override
-	public void configure(HttpSecurity http) throws Exception{
-	http.authorizeHttpRequests()
-			.antMatchers("/register", "/images/**", "/css/**", "/js/**", "/betaAirline")
-			.permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
-		.formLogin()
-			.loginPage("/loginpage")
-			.failureUrl("/loginpage?error=true")
-			.loginProcessingUrl("/login")
-			.permitAll().and()
-		.logout()
-			.logoutSuccessUrl("/index");
-			http.csrf().disable();		
-	}
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/register", "/about", "/fms", "/assets/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+                .loginPage("/loginpage")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/index", true)
+                .permitAll()
+            .and()
+            .logout()
+                .logoutSuccessUrl("/index")
+                .permitAll();
+
+        // Disable CSRF for simplicity
+        http.csrf().disable();
+    }
 	
 }

@@ -1,5 +1,6 @@
 package com.nor.flightManagementSystem.dao;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,16 @@ public class TicketDaoImpl implements TicketDao{
 		if (val == null)	val = 1000001L;
 		else	val += 1;
 		return val;
+	}
+
+	@Override
+	public Ticket findTicketByTicketNumber(Long ticketNumber) {
+		return repo.findById(ticketNumber).get();
+	}
+
+	@Override
+	public void deleteByTicketNumber(Long ticketNumber) {
+		repo.deleteById(ticketNumber);
 	}
 
 }

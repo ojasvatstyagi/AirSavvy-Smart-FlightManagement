@@ -13,7 +13,7 @@ public class Flight {
     private Integer seatCapacity;
     private String departure;
     private String arrival;
-    private Integer seatsBooked;
+    private Integer seatsBooked = 0;
 
     public Flight() {
     	super();
@@ -29,7 +29,6 @@ public class Flight {
 		this.seatCapacity = seatCapacity;
 		this.departure = departure;
 		this.arrival = arrival;
-		this.seatsBooked = 0;
 	}
 
     

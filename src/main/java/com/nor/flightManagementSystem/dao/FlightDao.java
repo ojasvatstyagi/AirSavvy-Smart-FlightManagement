@@ -5,10 +5,10 @@ import java.util.List;
 import com.nor.flightManagementSystem.bean.Flight;
 
 public interface FlightDao {
-	public void addFlight(Flight flight);
-	public List<Flight> showAllFlights();
-	public Flight viewFlight(Long flightNumber);
-	public void updateFlight(Flight flight);
-	public List<Flight> findFlightsByRouteId(Long routeId);
-	public void deleteFlightByFlightNumber(Long flightNumber);
+	void addFlight(Flight flight);
+	List<Flight> showAllFlights();
+	Flight viewFlight(Long flightNumber);
+	void updateFlight(Flight flight);
+	List<Flight> findFlightsByRouteId(Long routeId);
+	void deleteFlightByFlightNumber(Long flightNumber);
 }
