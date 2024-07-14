@@ -7,6 +7,13 @@
   <title>SIGN IN</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <style>
+  .error-message {
+          color: red;
+          font-size: 16px;
+          margin-bottom: 10px;
+      }
+  </style>
 </head>
 
 <body>
@@ -25,7 +32,7 @@
                 </a>
                 <h3 class="text-center">Flight Management System</h3>
 				<p class="text-center">Sign In to your account</p>
-
+                <div class="error-message">${error}</div>
                 <form action="/login" method="post">
                   <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -50,7 +57,6 @@
                     <a class="text-primary fw-bold ms-2" href="/register">Create an account</a>
                   </div>
                 </form>
-
 
               </div>
             </div>

@@ -182,7 +182,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="/viewBooking" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">My Profile</p>
                     </a>
@@ -217,6 +217,7 @@
                     <h3 class="card-title">About This Airport</h3>
                     <p class="text" >Airport Code: ${airport.airportCode}</p>
                     <p class="text">Airport Location: ${airport.airportLocation}</p>
+                    <p class="text">About Airport: ${airport.details}</p>
                   </div>
                 </div>
               </div>

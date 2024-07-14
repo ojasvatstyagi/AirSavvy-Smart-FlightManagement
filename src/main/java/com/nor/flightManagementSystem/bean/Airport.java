@@ -10,11 +10,10 @@ import javax.persistence.Table;
 public class Airport {
 
     @Id
-    @Column(name = "airport_code", nullable = false)
+    @Column(nullable = false)
     private String airportCode;
-
-    @Column(name = "airport_location")
     private String airportLocation;
+    private String details;
 
     // Default constructor
     public Airport() {
@@ -22,9 +21,10 @@ public class Airport {
     }
 
     // Parameterized constructor
-    public Airport(String airportCode, String airportLocation) {
+    public Airport(String airportCode, String airportLocation, String details) {
         this.airportCode = airportCode;
         this.airportLocation = airportLocation;
+        this.details = details;
     }
 
     // Getters and setters
@@ -44,9 +44,21 @@ public class Airport {
         this.airportLocation = airportLocation;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
     // toString method
     @Override
     public String toString() {
-        return "Airport [airportCode=" + airportCode + ", airportLocation=" + airportLocation + "]";
+        return "Airport{" +
+                "airportCode='" + airportCode + '\'' +
+                ", airportLocation='" + airportLocation + '\'' +
+                ", details='" + details + '\'' +
+                '}';
     }
 }

@@ -6,21 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "route")
 public class Route {
 
     @Id
-    @Column(name = "route_id")
     private Long routeId;
-
-    @Column(name = "source_airport_code", nullable = false)
+    @Column(nullable = false)
     private String sourceAirportCode;
-
-    @Column(name = "destination_airport_code", nullable = false)
+    @Column(nullable = false)
     private String destinationAirportCode;
-    
-    @Column(name = "price")
-    private Double price;
+	private Double price;
 	
 	public Long getRouteId() {
 		return routeId;

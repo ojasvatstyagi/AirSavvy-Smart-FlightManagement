@@ -43,6 +43,7 @@ public class AirportController {
     public ModelAndView saveAirport(@ModelAttribute("airportDetails") Airport airport) {
         airport.setAirportCode(airport.getAirportCode().toUpperCase());
         airport.setAirportLocation(airport.getAirportLocation().toUpperCase());
+        airport.setDetails(airport.getDetails());
         airportDao.addAirport(airport);
         return new ModelAndView("index");
     }
@@ -89,8 +90,9 @@ public class AirportController {
     
     @PostMapping("/updateAirport")
     public ModelAndView updateFlight(@RequestParam("airportCode") String airportCode,
-                               @RequestParam("airportLocation") String airportLocation) {
-        Airport airport = new Airport(airportCode, airportLocation);
+                                     @RequestParam("airportLocation") String airportLocation,
+                                     @RequestParam("details") String details) {
+        Airport airport = new Airport(airportCode, airportLocation, details);
         airportDao.updateAirport(airport);
         return new ModelAndView("index");
     }

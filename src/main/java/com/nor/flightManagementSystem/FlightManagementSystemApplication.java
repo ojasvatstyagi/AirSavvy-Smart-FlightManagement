@@ -13,7 +13,7 @@ public class FlightManagementSystemApplication {
  
 //mysql -u root -p     
 //ojas123@mysql
-//use airlinedb; 
+//use airlineDB;
 //show tables;
 //select * from airport;
 //desc flight;

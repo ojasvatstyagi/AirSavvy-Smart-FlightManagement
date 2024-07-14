@@ -6,7 +6,6 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
-@SuppressWarnings("serial")
 @Embeddable
 public class TicketPassengerEmbed implements Serializable{
 	@NotNull

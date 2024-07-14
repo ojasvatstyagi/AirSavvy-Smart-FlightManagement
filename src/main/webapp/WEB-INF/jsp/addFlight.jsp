@@ -181,7 +181,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="/viewBooking" class="d-flex align-items-center gap-2 dropdown-item">
+                    <a href="/profile" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-user fs-6"></i>
                       <p class="mb-0 fs-3">My Profile</p>
                     </a>
@@ -212,7 +212,7 @@
 
                     <form action="/addFlight" method="post">
                       <div class="mb-3">
-                        <label for="flightNumber" class="form-label">Flight Id</label>
+                        <label for="flightNumber" class="form-label">Flight Number</label>
                         <input type="text" class="form-control" id="flightNumber" name="flightNumber">
                       </div>
                       <div class="mb-3">
@@ -222,6 +222,15 @@
                       <div class="mb-3">
                         <label for="seatCapacity" class="form-label">Seat Capacity</label>
                         <input type="text" class="form-control" id="seatCapacity" name="seatCapacity">
+                      </div>
+                      <div class="mb-3">
+                        <label for="routeId" class="form-label">Select Route ID</label>
+                        <select id="routeId" name="routeId" class="form-control" required>
+                          <option value="" disabled selected>Select Route Code</option>
+                          <c:forEach var="route" items="${codeList}">
+                              <option value="${route.routeId}">${route.routeId} => ${route.sourceAirportCode} to ${route.destinationAirportCode}</option>
+                          </c:forEach>
+                        </select>
                       </div>
                       <div class="mb-3">
                         <label for="arrival" class="form-label">Enter Arrival Time</label>
@@ -246,8 +255,9 @@
                       <button type="reset" class="btn btn-primary">Reset</button>
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
-
-
+                    <div style="text-align: center;">
+                      <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
+                    </div>
                   </div>
                 </div>
               </div>

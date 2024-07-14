@@ -7,6 +7,14 @@
   <title>SIGN UP</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
+
+  <style>
+  .error {
+          color: red;
+          font-size: 14px;
+          margin-bottom: 10px;
+      }
+  </style>
 </head>
 
 <body>
@@ -25,6 +33,7 @@
                 </a>
                 <h3 class="text-center">Flight Management System</h3>
                 <p class="text-center">Registration form</p>
+                <div id="error" class="error">${error}</div>
 
                 <form id="registrationForm" action="/register" method="post" onsubmit="return validateForm()">
                   <div class="mb-3">
@@ -41,6 +50,10 @@
                       <input class="form-check-input" type="radio" id="admin" value="admin" name="type" />
                       <label class="form-check-label" for="admin">Admin</label>
                     </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
                   </div>
                   <div class="mb-4">
                     <label for="password" class="form-label">Password</label>
