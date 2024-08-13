@@ -36,107 +36,67 @@
 
 
             <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/index" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">SERVICES</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addAirport">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyairport">
-                <span>
-                  <i class="ti ti-current-location"></i>
-                </span>
-                <span class="hide-menu">Modify Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewAirports">
-                <span>
-                  <i class="ti ti-location"></i>
-                </span>
-                <span class="hide-menu">Enquire Airport</span>
-              </a>
-            </li>
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Home</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/index" aria-expanded="false">
+              <span>
+                <i class="ti ti-layout-dashboard"></i>
+              </span>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">SERVICES</span>
+          </li>
 
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewAirports">
+              <span>
+                <i class="ti ti-location"></i>
+              </span>
+              <span class="hide-menu">Enquire Airport</span>
+            </a>
+          </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addFlight">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Flights</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyFlight">
-                <span>
-                  <i class="ti ti-plane-tilt"></i>
-                </span>
-                <span class="hide-menu">Modify Flights</span>
-              </a>
-            </li><li class="sidebar-item">
-              <a class="sidebar-link" href="/viewFlights">
-                <span>
-                  <i class="ti ti-plane"></i>
-                </span>
-                <span class="hide-menu">Enquire Flight</span>
-              </a>
-            </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewFlights">
+              <span>
+                <i class="ti ti-plane"></i>
+              </span>
+              <span class="hide-menu">Enquire Flight</span>
+            </a>
+          </li>
 
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewRoutes" >
+              <span>
+                <i class="ti ti-route"></i>
+              </span>
+              <span class="hide-menu">Enquire Route</span>
+            </a>
+          </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/route">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Route</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewRoutes" >
-                <span>
-                  <i class="ti ti-route"></i>
-                </span>
-                <span class="hide-menu">Enquire Route</span>
-              </a>
-            </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
+              <span>
+                <i class="ti ti-brand-booking"></i>
+              </span>
+              <span class="hide-menu">Book Flight</span>
+            </a>
+          </li>
 
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
-                <span>
-                  <i class="ti ti-brand-booking"></i>
-                </span>
-                <span class="hide-menu">Book Flight</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
-                <span>
-                  <i class="ti ti-ticket"></i>
-                </span>
-                <span class="hide-menu">Your Bookings</span>
-              </a>
-            </li>
-          </ul>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
+              <span>
+                <i class="ti ti-ticket"></i>
+              </span>
+              <span class="hide-menu">Your Bookings</span>
+            </a>
+          </li>
+        </ul>
 
 
           <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
@@ -201,53 +161,42 @@
 
     <div class="container-fluid">
         <div class="container-fluid">
-          <div class="card">
+          <div class="card ">
                 <div class="card-body">
                 <h5 class="card-title fw-semibold mb-4">Ticket Invoice</h5>
-                <div class="card mb-0">
-                    <div class="card-body p-4">
-                        <div class="container">
-                            <form action="/viewBooking" method="post">
-                            <div class="mb-3">
-                                <label for="ticketNumber" class="form-label">Ticket Number</label>
-                                <input type="text" class="form-control" id="ticketNumber" name="ticketNumber" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            <form action="/cancelBooking" method="post">
-                <c:if test="${not empty ticket}">
+                <c:if test="${not empty tickets}">
+                <c:forEach var="ticket" items="${tickets}">
                 <div class="container-fluid">
                     <div class="col-md-4">
                         <h5 class="card-title fw-semibold mb-4">Ticket Details</h5>
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header text-center">
                                 <p>Ticket Number: ${ticket.ticketNumber}</p>
                                 <p>Route ID: ${ticket.routeId}</p>
                                 <p>Flight Number: ${ticket.flightNumber}</p>
                                 <p>Flight Name: ${ticket.flightName}</p>
                                 <p>Total Amount: ${ticket.totalAmount}</p>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-title">Passengers</h5>
+                                <c:forEach var="passenger" items="${passengerDetails[ticket.ticketNumber]}">
                                     <p class="card-text">
                                         <p>Passenger Name: ${passenger.passengerName}</p>
                                         <p>Passenger Date of Birth: ${passenger.passengerDob}</p>
-                                        <p>Individual Price: ${passenger.price}</p></p>
-                                    <a href="/cancelBooking" class="btn btn-primary">Cancel Booking</a>
+                                        <p>Individual Price: ${passenger.price}</p>
+                                        </c:forEach>
+                                    </p>
+                                    <a href="/cancelBooking" class="btn btn-danger">Cancel Booking</a>
                                     <p style="color: gray"><strong>*</strong> 10% will be deducted as cancellation fee</p>
-                                </div>
                             </div>
-                            <div style="text-align: center;">
-                                <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
-                            </div>
+                            </c:forEach>
+                            </c:if>
+                        </div>
+                        <div style="text-align: center;">
+                            <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
+                        </div>
                     </div>
                 </div>
-                </c:if>
-            </form>
         </div>
     </div>
   </div>

@@ -41,8 +41,6 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
 
 <body>
 
-
-
     <section class="vh-100">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
@@ -53,7 +51,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
                     style="border-top-left-radius: .5rem; border-top-right-radius: .5rem; width: 100%;">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                       alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                    <h5>${profile.fullName}</h5>
+                    <h5>${profile.firstName + " " + profile.lastName}</h5>
                     <p>${flightuser.username}</p>
                   </div>
                   <div class="col-md-14">
@@ -77,8 +75,8 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
                           <p class="text-muted">${profile.address}</p>
                         </div>
                         <div class="col-6 mb-3">
-                          <h6>Adhare Number</h6>
-                          <p class="text-muted">${profile.adhareNumber}</p>
+                          <h6>Aadhare Number</h6>
+                          <p class="text-muted">${profile.aadhareNumber}</p>
                         </div>
                       </div>
                       <hr class="mt-0 mb-4" >

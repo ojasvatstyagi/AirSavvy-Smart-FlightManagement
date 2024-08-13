@@ -1,4 +1,4 @@
-package com.nor.flightManagementSystem.dao;
+package com.nor.flightManagementSystem.repository;
 
 import java.util.List;
 
@@ -9,19 +9,23 @@ import org.springframework.stereotype.Service;
 import com.nor.flightManagementSystem.bean.Passenger;
 
 @Service
-@Repository
 public class PassengerDaoImpl implements PassengerDao {
 
     @Autowired
-    private PassengerRepository repo;
+    private PassengerRepository passengerRepository;
 
     @Override
     public void save(Passenger passenger) {
-        repo.save(passenger);
+        passengerRepository.save(passenger);
     }
 
     @Override
     public List<Passenger> findByTicketNumber(Long ticketNumber) {
-        return repo.findByEmbeddedId_TicketNumber(ticketNumber);
+        return passengerRepository.findByEmbeddedId_TicketNumber(ticketNumber);
+    }
+
+    @Override
+    public List<Passenger> findAllPassengers() {
+        return passengerRepository.findAll();
     }
 }

@@ -1,4 +1,6 @@
-package com.nor.flightManagementSystem.dao;
+package com.nor.flightManagementSystem.repository;
+
+import java.util.List;
 
 import com.nor.flightManagementSystem.bean.Ticket;
 
@@ -7,4 +9,6 @@ public interface TicketDao {
 	Long findLastTicketNumber();
 	Ticket findTicketByTicketNumber(Long ticketNumber);
 	void deleteByTicketNumber(Long ticketNumber);
+	List<Ticket> findAllTickets();
+	List<Ticket> findTicketsByUsername(String username);
 }

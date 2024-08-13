@@ -1,53 +1,29 @@
 package com.nor.flightManagementSystem.bean;
 
-import java.io.Serializable;
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Version;
 
-import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-@Embeddable
-public class TicketPassengerEmbed implements Serializable{
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class TicketPassengerEmbed implements Serializable {
 	@NotNull
 	private Long ticketNumber;
 	@NotNull
 	private Integer serialNumber;
-	
-	public Long getTicketNumber() {
-		return ticketNumber;
-	}
-	public void setTicketNumber(Long ticketNumber) {
-		this.ticketNumber = ticketNumber;
-	}
-	public Integer getSerialNumber() {
-		return serialNumber;
-	}
-	public void setSerialNumber(Integer serialNumber) {
-		this.serialNumber = serialNumber;
-	}
-	public TicketPassengerEmbed(@NotNull Long ticketNumber, @NotNull Integer serialNumber) {
+	@Version
+	private Long version;
+
+	public TicketPassengerEmbed(Long ticketNumber,Integer serialNumber) {
 		super();
 		this.ticketNumber = ticketNumber;
 		this.serialNumber = serialNumber;
 	}
-	public TicketPassengerEmbed() {
-		super();
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(serialNumber, ticketNumber);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TicketPassengerEmbed other = (TicketPassengerEmbed) obj;
-		return Objects.equals(serialNumber, other.serialNumber) && Objects.equals(ticketNumber, other.ticketNumber);
-	}
-	
 }

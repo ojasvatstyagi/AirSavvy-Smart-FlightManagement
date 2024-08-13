@@ -26,20 +26,15 @@
  		<![endif]-->
 
  </head>
-
  <body>
-
  	<div id="notfound">
  		<div class="notfound">
  			<div class="notfound-404">
  				<h1>Oops!</h1>
  			</div>
- 			<h2>404 - Page not found</h2>
- 			<p>${message}</p>
+ 			<h2>${error}</h2>
  			<a href="/index">Go To Home</a>
  		</div>
  	</div>
-
  </body>
-
  </html>

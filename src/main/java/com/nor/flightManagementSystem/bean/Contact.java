@@ -1,42 +1,31 @@
 package com.nor.flightManagementSystem.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "contact")
 public class Contact {
 
     @Id
+    @NotBlank
     private String name;
+    @Email
     private String email;
     private String comment;
-    
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	public Contact(String name, String email, String comment) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.comment = comment;
-	}
-	public Contact() {
-		super();
-	}
-    
+    @Version
+    private Long version;
 }

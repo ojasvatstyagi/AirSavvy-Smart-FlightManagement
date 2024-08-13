@@ -9,11 +9,3 @@ public class FlightManagementSystemApplication {
         SpringApplication.run(FlightManagementSystemApplication.class, args);
     }
 }
-
- 
-//mysql -u root -p     
-//ojas123@mysql
-//use airlineDB;
-//show tables;
-//select * from airport;
-//desc flight;

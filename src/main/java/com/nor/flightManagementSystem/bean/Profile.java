@@ -1,62 +1,35 @@
 package com.nor.flightManagementSystem.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
+import javax.validation.constraints.Size;
 import java.math.BigInteger;
 
-@Entity
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "profiles")
 public class Profile {
-    private String fullName;
+
+    private String firstName;
+    private String lastName;
     private BigInteger phone;
     private String address;
     @Id
-    private BigInteger adhareNumber;
-    @OneToOne
-    @JoinColumn(name = "username", referencedColumnName = "username")
+    @Size(min = 12, max = 12)
+    private BigInteger aadhareNumber;
+    @DBRef
     private FlightUser flightUser;
-
-
-    public Profile(String fullName, BigInteger phone, String address, BigInteger adhareNumber) {
-        this.fullName = fullName;
-        this.phone = phone;
-        this.address = address;
-        this.adhareNumber = adhareNumber;
-    }
-
-    public Profile() {
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public BigInteger getPhone() {
-        return phone;
-    }
-
-    public void setPhone(BigInteger phone) {
-        this.phone = phone;
-    }
-
-    public BigInteger getAdhareNumber() {
-        return adhareNumber;
-    }
-
-    public void setAdhareNumber(BigInteger adhareNumber) {
-        this.adhareNumber = adhareNumber;
-    }
+    private byte[] photo;
+    @Version
+    private Long version;
 }

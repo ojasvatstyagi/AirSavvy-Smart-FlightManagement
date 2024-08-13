@@ -1,58 +1,29 @@
 package com.nor.flightManagementSystem.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import javax.validation.constraints.Positive;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "ticket")
 public class Ticket {
 	@Id
 	private Long ticketNumber;
 	private Long routeId;
 	private Long flightNumber;
 	private String flightName;
+	@Positive
 	private Double totalAmount;
-	
-	public Ticket() {
-		super();
-	}
-	
-	public Ticket(Long ticketNumber, Long routeId, Long flightNumber, String flightName, Double totalAmount) {
-		super();
-		this.ticketNumber = ticketNumber;
-		this.routeId = routeId;
-		this.flightNumber = flightNumber;
-		this.flightName = flightName;
-		this.totalAmount = totalAmount;
-	}
-	public Long getTicketNumber() {
-		return ticketNumber;
-	}
-	public void setTicketNumber(Long ticketNumber) {
-		this.ticketNumber = ticketNumber;
-	}
-	public Long getRouteId() {
-		return routeId;
-	}
-	public void setRouteId(Long routeId) {
-		this.routeId = routeId;
-	}
-	public Long getFlightNumber() {
-		return flightNumber;
-	}
-	public void setFlightNumber(Long flightNumber) {
-		this.flightNumber = flightNumber;
-	}
-	public String getFlightName() {
-		return flightName;
-	}
-	public void setFlightName(String flightName) {
-		this.flightName = flightName;
-	}
-	public Double getTotalAmount() {
-		return totalAmount;
-	}
-	public void setTotalAmount(Double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-
+	private String username;
+	@Version
+	private Long version;
 }

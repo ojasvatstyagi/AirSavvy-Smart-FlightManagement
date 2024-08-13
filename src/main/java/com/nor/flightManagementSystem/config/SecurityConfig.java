@@ -14,36 +14,33 @@ import com.nor.flightManagementSystem.service.FlightUserService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	private FlightUserService service;
-	
+
 	@Autowired
 	private EncoderConfig config;
-	
+
 	@Autowired
 	@Override
 	protected void configure(AuthenticationManagerBuilder authority) throws Exception {
-			authority.userDetailsService(service).passwordEncoder(config.passwordEncoder());
+		authority.userDetailsService(service).passwordEncoder(config.passwordEncoder());
 	}
-	
-	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers("/register", "/about", "/fms", "/assets/**").permitAll()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()
-                .loginPage("/loginpage")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/index", true)
-                .permitAll()
-            .and()
-            .logout()
-                .logoutSuccessUrl("/index")
-                .permitAll();
 
-        // Disable CSRF for simplicity
-        http.csrf().disable();
-    }
-	
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests(requests -> requests
+						.antMatchers("/register", "/images/**", "/fms", "/about", "/assets/**")
+						.permitAll()
+						.anyRequest()
+						.authenticated())
+				.formLogin(login -> login
+						.loginPage("/loginpage")
+						.failureUrl("/loginpage?error=true")
+						.loginProcessingUrl("/login")
+						.permitAll())
+				.logout(logout -> logout
+						.logoutSuccessUrl("/index"));
+		http.csrf(csrf -> csrf.disable());
+	}
 }

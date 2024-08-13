@@ -1,4 +1,4 @@
-package com.nor.flightManagementSystem.dao;
+package com.nor.flightManagementSystem.repository;
 
 import java.util.List;
 
@@ -11,4 +11,6 @@ public interface FlightDao {
 	void updateFlight(Flight flight);
 	List<Flight> findFlightsByRouteId(Long routeId);
 	void deleteFlightByFlightNumber(Long flightNumber);
+	Flight findByFlightNumber(Long flightNumber);
 }
+

@@ -36,108 +36,117 @@
 
 
             <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/index" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">SERVICES</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addAirport">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyAirport">
-                <span>
-                  <i class="ti ti-current-location"></i>
-                </span>
-                <span class="hide-menu">Modify Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewAirports">
-                <span>
-                  <i class="ti ti-location"></i>
-                </span>
-                <span class="hide-menu">Enquire Airport</span>
-              </a>
-            </li>
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Home</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/index" aria-expanded="false">
+              <span>
+                <i class="ti ti-layout-dashboard"></i>
+              </span>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">SERVICES</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/addAirport">
+              <span>
+                <i class="ti ti-square-plus"></i>
+              </span>
+              <span class="hide-menu">Add Airports</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/modifyAirport">
+              <span>
+                <i class="ti ti-current-location"></i>
+              </span>
+              <span class="hide-menu">Modify Airport Details</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewAirports">
+              <span>
+                <i class="ti ti-location"></i>
+              </span>
+              <span class="hide-menu">Enquire Airport</span>
+            </a>
+          </li>
 
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addFlight">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Flights</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyFlight">
-                <span>
-                  <i class="ti ti-plane-tilt"></i>
-                </span>
-                <span class="hide-menu">Modify Flights</span>
-              </a>
-            </li><li class="sidebar-item">
-              <a class="sidebar-link" href="/viewFlights">
-                <span>
-                  <i class="ti ti-plane"></i>
-                </span>
-                <span class="hide-menu">Enquire Flight</span>
-              </a>
-            </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/addFlight">
+              <span>
+                <i class="ti ti-square-plus"></i>
+              </span>
+              <span class="hide-menu">Add Flights</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/modifyFlight">
+              <span>
+                <i class="ti ti-plane-tilt"></i>
+              </span>
+              <span class="hide-menu">Modify Flight Details</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewFlights">
+              <span>
+                <i class="ti ti-plane"></i>
+              </span>
+              <span class="hide-menu">Enquire Flight</span>
+            </a>
+          </li>
 
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/route">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Route</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/route">
+              <span>
+                <i class="ti ti-square-plus"></i>
+              </span>
+              <span class="hide-menu">Add Route</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="//modifyRoute" >
+              <span>
+                <i class="ti ti-route"></i>
+              </span>
+              <span class="hide-menu">Modify Route Details</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
               <a class="sidebar-link" href="/viewRoutes" >
                 <span>
                   <i class="ti ti-route"></i>
                 </span>
                 <span class="hide-menu">Enquire Route</span>
               </a>
-            </li>
+          </li>
 
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
-                <span>
-                  <i class="ti ti-brand-booking"></i>
-                </span>
-                <span class="hide-menu">Book Flight</span>
-              </a>
-            </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewTickets" aria-expanded="false">
+              <span>
+                <i class="ti ti-brand-booking"></i>
+              </span>
+              <span class="hide-menu">View Tickets</span>
+            </a>
+          </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
-                <span>
-                  <i class="ti ti-ticket"></i>
-                </span>
-                <span class="hide-menu">Your Bookings</span>
-              </a>
-            </li>
-          </ul>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="/viewPassengers" arias-expanded="false">
+              <span>
+                <i class="ti ti-ticket"></i>
+              </span>
+              <span class="hide-menu">View Passengers</span>
+            </a>
+          </li>
+        </ul>
 
 
           <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
@@ -252,8 +261,10 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                       </div>
-                      <button type="reset" class="btn btn-primary">Reset</button>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <div style="display: flex; justify-content: space-evenly;">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                      </div>
                     </form>
                     <div style="text-align: center;">
                       <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
@@ -268,6 +279,15 @@
     </div>
   </div>
 
+  <script>
+          window.onload = function() {
+              const urlParams = new URLSearchParams(window.location.search);
+              const message = urlParams.get('message');
+              if (message) {
+                  alert(message);
+              }
+          }
+      </script>
 
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

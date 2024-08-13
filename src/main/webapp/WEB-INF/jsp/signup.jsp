@@ -60,7 +60,7 @@
                     <input type="password" class="form-control" id="password" name="password">
                   </div>
                   <div class="mb-4">
-                    <label for="confirmPassword" class="form-label">Retype Your Password</label>
+                    <label for="confirmPassword" class="form-label">Rewrite Your Password</label>
                     <input type="password" class="form-control" id="confirmPassword">
                   </div>
                   <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</button>

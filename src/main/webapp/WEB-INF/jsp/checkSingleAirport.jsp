@@ -37,109 +37,67 @@
 
 
             <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/index" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">SERVICES</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addAirport">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyairport">
-                <span>
-                  <i class="ti ti-current-location"></i>
-                </span>
-                <span class="hide-menu">Modify Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewAirports">
-                <span>
-                  <i class="ti ti-location"></i>
-                </span>
-                <span class="hide-menu">Enquire Airport</span>
-              </a>
-            </li>
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Home</span>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/index" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-layout-dashboard"></i>
+                  </span>
+                  <span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">SERVICES</span>
+              </li>
 
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewAirports">
+                  <span>
+                    <i class="ti ti-location"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Airport</span>
+                </a>
+              </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addFlight">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Flights</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyFlight">
-                <span>
-                  <i class="ti ti-plane-tilt"></i>
-                </span>
-                <span class="hide-menu">Modify Flights</span>
-              </a>
-            </li><li class="sidebar-item">
-              <a class="sidebar-link" href="/viewFlights">
-                <span>
-                  <i class="ti ti-plane"></i>
-                </span>
-                <span class="hide-menu">Enquire Flight</span>
-              </a>
-            </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewFlights">
+                  <span>
+                    <i class="ti ti-plane"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Flight</span>
+                </a>
+              </li>
 
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewRoutes" >
+                  <span>
+                    <i class="ti ti-route"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Route</span>
+                </a>
+              </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/route">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Route</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewRoutes" >
-                <span>
-                  <i class="ti ti-route"></i>
-                </span>
-                <span class="hide-menu">Enquire Route</span>
-              </a>
-            </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-brand-booking"></i>
+                  </span>
+                  <span class="hide-menu">Book Flight</span>
+                </a>
+              </li>
 
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
-                <span>
-                  <i class="ti ti-brand-booking"></i>
-                </span>
-                <span class="hide-menu">Book Flight</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
-                <span>
-                  <i class="ti ti-ticket"></i>
-                </span>
-                <span class="hide-menu">Your Bookings</span>
-              </a>
-            </li>
-          </ul>
-
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
+                  <span>
+                    <i class="ti ti-ticket"></i>
+                  </span>
+                  <span class="hide-menu">Your Bookings</span>
+                </a>
+              </li>
+            </ul>
 
           <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
             <div class="d-flex">
@@ -208,7 +166,7 @@
               <h5 class="card-title fw-semibold mb-4">Airport Panel</h5>
 
 
-              <div class="col-sm-6 col-xl-3" >
+              <div class="col-sm-6 col-xl-3 text-center">
                 <div class="card overflow-hidden rounded-2" >
                   <div class="position-relative">
                     <img src="../assets/images/products/s2.jpg" class="card-img-top rounded-0" alt="...">

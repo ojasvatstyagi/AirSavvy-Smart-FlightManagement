@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-
 <!doctype html>
 <html lang="en">
 
@@ -14,151 +10,14 @@
 </head>
 
 <body>
-  <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <!-- Sidebar Start -->
-    <aside class="left-sidebar">
-      <!-- Sidebar scroll-->
-      <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
-            <img src="../assets/images/logos/bird_2.jpg" width="180" alt="" />
-          </a>
-          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-            <i class="ti ti-x fs-8"></i>
+      <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+        <div class="d-flex">
+          <div class="unlimited-access-title me-3">
+          <div class="unlimited-access-img">
+            <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
           </div>
         </div>
-
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-          <ul id="sidebarnav">
-
-
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/index" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">SERVICES</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addAirport">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyairport">
-                <span>
-                  <i class="ti ti-current-location"></i>
-                </span>
-                <span class="hide-menu">Modify Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewAirports">
-                <span>
-                  <i class="ti ti-location"></i>
-                </span>
-                <span class="hide-menu">Enquire Airport</span>
-              </a>
-            </li>
-
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addFlight">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Flights</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyFlight">
-                <span>
-                  <i class="ti ti-plane-tilt"></i>
-                </span>
-                <span class="hide-menu">Modify Flights</span>
-              </a>
-            </li><li class="sidebar-item">
-              <a class="sidebar-link" href="/viewFlights">
-                <span>
-                  <i class="ti ti-plane"></i>
-                </span>
-                <span class="hide-menu">Enquire Flight</span>
-              </a>
-            </li>
-
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/route">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Route</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewRoutes" >
-                <span>
-                  <i class="ti ti-route"></i>
-                </span>
-                <span class="hide-menu">Enquire Route</span>
-              </a>
-            </li>
-
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
-                <span>
-                  <i class="ti ti-brand-booking"></i>
-                </span>
-                <span class="hide-menu">Book Flight</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-brand-booking"></i>
-                </span>
-                <span class="hide-menu">Cancel Booking</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
-                <span>
-                  <i class="ti ti-ticket"></i>
-                </span>
-                <span class="hide-menu">Your Bookings</span>
-              </a>
-            </li>
-          </ul>
-
-
-          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
-            <div class="d-flex">
-              <div class="unlimited-access-title me-3">
-              <div class="unlimited-access-img">
-                <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-        </nav>
-        <!-- End Sidebar navigation -->
       </div>
-      <!-- End Sidebar scroll-->
     </aside>
     <!--  Sidebar End -->
     <!--  Main wrapper -->
@@ -188,13 +47,10 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="/viewBooking" class="d-flex align-items-center gap-2 dropdown-item">
-                      <i class="ti ti-user fs-6"></i>
-                      <p class="mb-0 fs-3">My Profile</p>
-                    </a>
-                    <a href="/about" class="d-flex align-items-center gap-2 dropdown-item">
+
+                    <a href="/index" class="d-flex align-items-center gap-2 dropdown-item">
                       <i class="ti ti-mood-happy"></i>
-                      <p class="mb-0 fs-3">About Us</p>
+                      <p class="mb-0 fs-3">Home</p>
                     </a>
                     <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
@@ -239,7 +95,7 @@
                     <p>Aspiring Java Developer</p>
                     <i class="ti ti-brand-github" st></i><a href="https://github.com/ojasvatstyagi"> Github Account</a><br>
                     <i class="ti ti-brand-linkedin"></i><a href="https://www.linkedin.com/in/ojas-tyagi"> My LinkedIn</a><br>
-                    <i class="ti ti-user"></i><a href="https://ojasvatstyagi.github.io/Portfolio-WebPage/">Visit To Know More About Me</a>
+                    <i class="ti ti-user"></i><a href="https://ojasvatstyagi.github.io/Portfolio/">Visit To Know More About Me</a>
                     </div>
                 </div>
             </div>
@@ -266,6 +122,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                    <br>
                     <div style="text-align: center;">
                         <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
                     </div>
@@ -282,5 +139,4 @@
   <script src="../assets/js/app.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 </body>
-
 </html>

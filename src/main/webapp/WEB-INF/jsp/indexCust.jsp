@@ -47,22 +47,7 @@
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                 <span class="hide-menu">SERVICES</span>
               </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="/addAirport">
-                  <span>
-                    <i class="ti ti-square-plus"></i>
-                  </span>
-                  <span class="hide-menu">Add Airports</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="/modifyAirport">
-                  <span>
-                    <i class="ti ti-current-location"></i>
-                  </span>
-                  <span class="hide-menu">Modify Airports</span>
-                </a>
-              </li>
+
               <li class="sidebar-item">
                 <a class="sidebar-link" href="/viewAirports">
                   <span>
@@ -72,23 +57,7 @@
                 </a>
               </li>
 
-
               <li class="sidebar-item">
-                <a class="sidebar-link" href="/addFlight">
-                  <span>
-                    <i class="ti ti-square-plus"></i>
-                  </span>
-                  <span class="hide-menu">Add Flights</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="/modifyFlight">
-                  <span>
-                    <i class="ti ti-plane-tilt"></i>
-                  </span>
-                  <span class="hide-menu">Modify Flights</span>
-                </a>
-              </li><li class="sidebar-item">
                 <a class="sidebar-link" href="/viewFlights">
                   <span>
                     <i class="ti ti-plane"></i>
@@ -97,15 +66,6 @@
                 </a>
               </li>
 
-
-              <li class="sidebar-item">
-                <a class="sidebar-link" href="/route">
-                  <span>
-                    <i class="ti ti-square-plus"></i>
-                  </span>
-                  <span class="hide-menu">Add Route</span>
-                </a>
-              </li>
               <li class="sidebar-item">
                 <a class="sidebar-link" href="/viewRoutes" >
                   <span>
@@ -114,7 +74,6 @@
                   <span class="hide-menu">Enquire Route</span>
                 </a>
               </li>
-
 
               <li class="sidebar-item">
                 <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
@@ -348,8 +307,8 @@
               </div>
             </div>
           </div>
-        
-          
+
+
         <div class="row">
           <div class="col-sm-6 col-xl-3">
             <div class="card overflow-hidden rounded-2">

@@ -36,108 +36,67 @@
 
 
             <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">Home</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/index" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                <span class="hide-menu">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">SERVICES</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addAirport">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyairport">
-                <span>
-                  <i class="ti ti-current-location"></i>
-                </span>
-                <span class="hide-menu">Modify Airports</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewAirports">
-                <span>
-                  <i class="ti ti-location"></i>
-                </span>
-                <span class="hide-menu">Enquire Airport</span>
-              </a>
-            </li>
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Home</span>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/index" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-layout-dashboard"></i>
+                  </span>
+                  <span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">SERVICES</span>
+              </li>
 
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewAirports">
+                  <span>
+                    <i class="ti ti-location"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Airport</span>
+                </a>
+              </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/addFlight">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Flights</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/modifyFlight">
-                <span>
-                  <i class="ti ti-plane-tilt"></i>
-                </span>
-                <span class="hide-menu">Modify Flights</span>
-              </a>
-            </li><li class="sidebar-item">
-              <a class="sidebar-link" href="/viewFlights">
-                <span>
-                  <i class="ti ti-plane"></i>
-                </span>
-                <span class="hide-menu">Enquire Flight</span>
-              </a>
-            </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewFlights">
+                  <span>
+                    <i class="ti ti-plane"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Flight</span>
+                </a>
+              </li>
 
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewRoutes" >
+                  <span>
+                    <i class="ti ti-route"></i>
+                  </span>
+                  <span class="hide-menu">Enquire Route</span>
+                </a>
+              </li>
 
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/route">
-                <span>
-                  <i class="ti ti-square-plus"></i>
-                </span>
-                <span class="hide-menu">Add Route</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewRoutes" >
-                <span>
-                  <i class="ti ti-route"></i>
-                </span>
-                <span class="hide-menu">Enquire Route</span>
-              </a>
-            </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-brand-booking"></i>
+                  </span>
+                  <span class="hide-menu">Book Flight</span>
+                </a>
+              </li>
 
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/searchFlight" aria-expanded="false">
-                <span>
-                  <i class="ti ti-brand-booking"></i>
-                </span>
-                <span class="hide-menu">Book Flight</span>
-              </a>
-            </li>
-
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
-                <span>
-                  <i class="ti ti-ticket"></i>
-                </span>
-                <span class="hide-menu">Your Bookings</span>
-              </a>
-            </li>
-          </ul>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/viewBooking" arias-expanded="false">
+                  <span>
+                    <i class="ti ti-ticket"></i>
+                  </span>
+                  <span class="hide-menu">Your Bookings</span>
+                </a>
+              </li>
+            </ul>
 
 
           <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
@@ -211,7 +170,7 @@
                     <h2>Book Flight</h2>
                       <div class="mb-3">
                         <label for="flightNumber" class="form-label">Flight Id</label>
-                        <input type="text" class="form-control" id="flightNumber" name="flightNumber" value="${flightNumber}" disabled>
+                        <input type="text" class="form-control" id="flightNumber" name="flightNumber" value="${flightNumber}" placeholder="xxx" disabled>
                       </div>
                       <div class="mb-3">
                         <label for="flightName" class="form-label">Flight Name</label>
@@ -228,7 +187,7 @@
 
                       <form action="/bookFlight" method="post">
                         <div id="passenger-container">
-                        <h3>Passenger 1</h3>
+                        <h3>Passenger</h3>
                         <div class="mb-3">
                           <label for="passengerName1" class="form-label">Passenger Name</label>
                           <input type="text" class="form-control" id="passengerName1" name="passengerName">
@@ -238,18 +197,21 @@
                           <input type="date" class="form-control" id="passengerDob1" name="passengerDob">
                         </div>
                       </div>
-                          <button type="button" onclick="addPassenger()" class="btn btn-primary">Add Passenger</button>
-                          <button type="button" onclick="removePassenger()" class="btn btn-primary">Remove Passenger</button>
+                      <div style="display: flex; justify-content: space-evenly;">
+                          <button type="button" onclick="addPassenger()" class="btn btn-danger">Add Passenger</button>
                           <button type="submit" class="btn btn-primary">Book Flight</button>
-
+                          <button type="button" onclick="removePassenger()" class="btn btn-danger">Remove Passenger</button>
+                        </div>
                           <input type="hidden" name="routeId" value="${routeId}">
                           <input type="hidden" name="flightNumber" value="${flightNumber}">
                           <input type="hidden" name="flightName" value="${flightName}">
                           <input type="hidden" name="price" value="${price}">
                       </form>
+                      <br>
                         <div style="text-align: center;">
                             <a class="text-primary fw-bold ms-2" href="/searchFlight">Back</a>
                         </div>
+
                   </div>
                 </div>
               </div>
@@ -303,5 +265,4 @@
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 
 </body>
-
 </html>
