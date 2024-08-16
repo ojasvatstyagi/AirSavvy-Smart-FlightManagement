@@ -70,4 +70,6 @@ Follow these steps to set up the project locally:
 ## Project Structure
 ![Flight Management System Structure ](StructurePart1.png)
 ![Flight Management System Structure ](StructurePart2.png)
+![Flight Management System Structure ](StructurePart3.png)
+![Flight Management System Structure ](StructurePart4.png)
 

@@ -11,6 +11,8 @@ import com.nor.flightManagementSystem.bean.FlightUser;
 import com.nor.flightManagementSystem.repository.FlightUserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class FlightUserService implements UserDetailsService {
 
@@ -38,7 +40,7 @@ public class FlightUserService implements UserDetailsService {
     }
 
     public FlightUser findByUsername(String username) {
-        return repository.findByUsername(username).get();
+        return repository.findByUsername(username).orElse(null);
     }
 
     public String getRoleByUsername(String username) {

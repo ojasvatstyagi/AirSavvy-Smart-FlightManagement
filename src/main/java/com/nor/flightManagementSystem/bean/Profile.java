@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import javax.validation.constraints.Size;
-import java.math.BigInteger;
 
 
 @Getter
@@ -22,13 +21,13 @@ public class Profile {
 
     private String firstName;
     private String lastName;
-    private BigInteger phone;
+    private String phone;
     private String address;
     @Id
     @Size(min = 12, max = 12)
-    private BigInteger aadhareNumber;
+    private String aadhareNumber;
     @DBRef
-    private FlightUser flightUser;
+    private FlightUser user; // Use FlightUser reference
     private byte[] photo;
     @Version
     private Long version;

@@ -15,11 +15,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nor.flightManagementSystem.bean.FlightUser;
 import com.nor.flightManagementSystem.service.FlightUserService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @ControllerAdvice
@@ -97,19 +100,80 @@ public class LoginController {
         }
     }
 
+        @GetMapping("/profile")
+        public ModelAndView userProfile() {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
 
-    @GetMapping("/profile")
-    public ModelAndView userProfile() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+            // Fetch the user and profile
+            FlightUser flightUser = userService.findByUsername(username);
+            Profile profile = profileRepository.findByUser_Username(username);
 
-        Profile profile = profileRepository.findByFlightUser_Username(username);
-        FlightUser flightUser = userService.findByUsername(username);
+            if (profile == null) {
+                profile = new Profile(); // Create a new profile if not found
+            }
 
-        return new ModelAndView("myProfile")
-                .addObject("profile", profile)
-                .addObject("flightuser", flightUser);
-    }
+            return new ModelAndView("myProfile")
+                    .addObject("profile", profile)
+                    .addObject("flightuser", flightUser);
+        }
+
+        @PostMapping("/updateProfile")
+        public String updateProfile(
+                @RequestParam String email,
+                @RequestParam String phone,
+                @RequestParam String address,
+                @RequestParam String aadhareNumber,
+                RedirectAttributes redirectAttributes) {
+
+            // Get the username from the security context
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+
+            // Fetch the profile and update it
+            Profile profile = profileRepository.findByUser_Username(username);
+            if (profile != null) {
+                profile.setPhone(phone);
+                profile.setAddress(address);
+                profile.setAadhareNumber(aadhareNumber);
+                profileRepository.save(profile);
+
+                // Update user email
+                FlightUser flightUser = userService.findByUsername(username);
+                flightUser.setEmail(email);
+                userService.save(flightUser);
+
+                redirectAttributes.addFlashAttribute("message", "Profile updated successfully");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Profile not found");
+            }
+
+            return "redirect:/profile"; // Redirect to the profile page
+        }
+
+        @PostMapping("/uploadProfileImage")
+        public String uploadProfileImage(
+                @RequestParam("profileImage") MultipartFile file,
+                RedirectAttributes redirectAttributes) throws IOException {
+
+            // Get the username from the security context
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+
+            // Fetch the profile and update the image
+            Profile profile = profileRepository.findByUser_Username(username);
+            if (profile != null) {
+                profile.setPhoto(file.getBytes());
+                profileRepository.save(profile);
+
+                redirectAttributes.addFlashAttribute("message", "Profile image updated successfully");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Profile not found");
+            }
+
+            return "redirect:/profile"; // Redirect to the profile page
+        }
+
 
     @GetMapping("/loginpage")
     public ModelAndView showLoginPage(@RequestParam(required = false) String error) {
