@@ -31,9 +31,6 @@ public class AirportController {
     public ModelAndView saveAirport(@ModelAttribute("airportDetails") Airport airport) {
         try {
             String airportCode = airport.getAirportCode().toUpperCase();
-            if (airportDao.findAirportById(airportCode).isPresent()) {
-                throw new DuplicateAirportCodeException("Airport with code " + airportCode + " already exists.");
-            }
             airport.setAirportCode(airportCode);
             airport.setAirportLocation(airport.getAirportLocation().toUpperCase());
             airportDao.addAirport(airport);
@@ -62,8 +59,7 @@ public class AirportController {
     @GetMapping("/viewAirports/{id}")
     public ModelAndView showSingleAirportPage(@PathVariable("id") String id) {
         try {
-            Airport airport = airportDao.findAirportById(id)
-                    .orElseThrow(() -> new DatabaseException("Airport with ID " + id + " not found"));
+            Airport airport = airportDao.findAirportByCode(id);
             ModelAndView mv = new ModelAndView("checkSingleAirport");
             mv.addObject("airport", airport);
             return mv;
@@ -115,13 +111,13 @@ public class AirportController {
                                       @RequestParam String airportLocation,
                                       @RequestParam String details) {
         try {
-            Airport airport = airportDao.findAirportById(airportCode)
-                    .orElseThrow(() -> new DatabaseException("Airport with code " + airportCode + " not found"));
+            Airport airport = airportDao.findAirportByCode(airportCode);
             airport.setAirportLocation(airportLocation.toUpperCase());
             airport.setDetails(details);
             airportDao.updateAirport(airport);
             return new ModelAndView("redirect:/modifyAirport?message=Airport details updated successfully");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new DatabaseException("Problem updating airport in the database", e);
         }
     }

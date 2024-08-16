@@ -28,8 +28,7 @@ public class TicketDaoImpl implements TicketDao {
 
 	@Override
 	public Ticket findTicketByTicketNumber(Long ticketNumber) {
-		return ticketRepository.findById(ticketNumber)
-				.orElseThrow(() -> new EntityNotFoundException("Ticket not found with number: " + ticketNumber));
+		return ticketRepository.findByTicketNumber(ticketNumber);
 	}
 
 	@Override

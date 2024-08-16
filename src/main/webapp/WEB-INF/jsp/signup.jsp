@@ -43,11 +43,11 @@
                   <div class="mb-3">
                     <label for="type" class="form-label">User Type</label>
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" id="customer" value="customer" name="type" />
+                      <input class="form-check-input" type="radio" id="customer" value="customer" name="role" />
                       <label class="form-check-label" for="customer">Customer</label>
                     </div>
                     <div class="form-check form-check-inline mb-0 me-4">
-                      <input class="form-check-input" type="radio" id="admin" value="admin" name="type" />
+                      <input class="form-check-input" type="radio" id="admin" value="admin" name="role" />
                       <label class="form-check-label" for="admin">Admin</label>
                     </div>
                   </div>

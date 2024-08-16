@@ -29,15 +29,15 @@ public class FlightUser implements UserDetails {
 	private String password;
 	@Email
 	private String email;
-	private boolean isEnabled;
-	private String type;
+	private boolean isEnabled = false;
+	private String role;
 	@Version
 	private Long version;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// Return roles or authorities. Placeholder example:
-		return List.of(new SimpleGrantedAuthority(type));
+		return List.of(new SimpleGrantedAuthority(role));
 	}
 
 	@Override

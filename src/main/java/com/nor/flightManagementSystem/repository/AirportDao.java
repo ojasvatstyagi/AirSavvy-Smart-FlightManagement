@@ -8,9 +8,9 @@ import com.nor.flightManagementSystem.bean.Airport;
 public interface AirportDao {
      void addAirport(Airport airport);
      List<Airport> findAllAirports();
-     Optional<Airport> findAirportById(String id);
      List<String> findAllAirportCodes();
-     Optional<String> findAirportCodeByLocation(String airportLocation);
+     String findAirportCodeByLocation(String airportLocation);
      void deleteAirportByCode(String airportCode);
      void updateAirport(Airport airport);
+     Airport findAirportByCode(String airportCode);
 }

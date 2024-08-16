@@ -15,7 +15,10 @@ public interface AirportRepository extends MongoRepository<Airport, String> {
     @Query(value = "{}", fields = "{ 'airportCode' : 1 }")
     List<String> findAllAirportCodes();
 
+    @Query(value = "{ 'airportCode' : ?0 }")
+    Airport findAirportByCode(String airportCode);
+
     @Query(value = "{ 'airportLocation': ?0 }", fields = "{ 'airportCode' : 1 }")
-    Optional<String> findAirportCodeByLocation(String airportLocation);  // Changed to Optional<String>
+    Optional<Airport> findAirportCodeByLocation(String airportLocation);  // Changed to Optional<String>
 }
 

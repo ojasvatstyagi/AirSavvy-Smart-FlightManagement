@@ -3,6 +3,7 @@ package com.nor.flightManagementSystem.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.nor.flightManagementSystem.exception.*;
 import com.nor.flightManagementSystem.service.TicketService;
@@ -57,17 +58,40 @@ public class BookingController {
     public ModelAndView searchFlights(@RequestParam String sourceAirport,
                                       @RequestParam String destinationAirport) {
         try {
-            String fromAirportCode = String.valueOf(airportDao.findAirportCodeByLocation(sourceAirport));
-            String toAirportCode = String.valueOf(airportDao.findAirportCodeByLocation(destinationAirport));
 
-            throw new InvalidAirportCodeException("Invalid source or destination airport code.");
+            String fromAirport = airportDao.findAirportCodeByLocation(sourceAirport);
+            String toAirport = airportDao.findAirportCodeByLocation(destinationAirport);
 
+            if (fromAirport == null || toAirport == null) {
+                throw new InvalidAirportCodeException("Invalid source or destination airport code.");
+            }
+
+            if (fromAirport.equalsIgnoreCase(toAirport)) {
+                throw new InvalidAirportCodeException("Source and destination airport codes cannot be the same.");
+            }
+
+            Route route = routeDao.findRouteBySourceAndDestination(fromAirport, toAirport);
+
+            if (route == null) {
+                throw new RouteNotFoundException("No route found between the specified airports.");
+            }
+
+            List<Flight> flights = flightDao.findFlightsByRouteId(route.getRouteId());
+
+
+            ModelAndView mv = new ModelAndView("searchedFlights");
+            mv.addObject("flights", flights);
+            mv.addObject("fromAirport", fromAirport);
+            mv.addObject("toAirport", toAirport);
+            mv.addObject("price", route.getPrice());
+            return mv;
         } catch (InvalidAirportCodeException | RouteNotFoundException e) {
             throw e;
         } catch (Exception e) {
-            throw new DatabaseException("Problem searching flights", e);
+            throw new DatabaseException("Error searching flights", e);
         }
     }
+
 
     @GetMapping("/bookFlight")
     public ModelAndView showBookingPage(@RequestParam Long flightNumber,
@@ -125,7 +149,7 @@ public class BookingController {
             ticket.setTotalAmount(totalAmount);
             ticketDao.save(ticket);
 
-            Flight flight = flightDao.viewFlight(flightNumber);
+            Flight flight = flightDao.findByFlightNumber(flightNumber);
             flight.setSeatsBooked((flight.getSeatsBooked() != null ? flight.getSeatsBooked() : 0) + passengersCount);
             flightDao.addFlight(flight);
 
@@ -165,27 +189,39 @@ public class BookingController {
     @PostMapping("/cancelBooking")
     public ModelAndView cancelBooking(@RequestParam Long ticketNumber) {
         try {
+
+            // Fetch the ticket details
             Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
             if (ticket == null) {
                 throw new TicketNotFoundException("Ticket not found");
             }
 
+            // Fetch the flight details
             Flight flight = flightDao.findByFlightNumber(ticket.getFlightNumber());
-            int passengerCount = passengerDao.findByTicketNumber(ticketNumber).size();
-            int updatedSeats = Math.max(0, (flight.getSeatsBooked() != null ? flight.getSeatsBooked() : 0) - passengerCount);
+            System.out.println(flight.toString());
 
-            flight.setSeatsBooked(updatedSeats);
+            // Fetch the count of passengers associated with the ticket
+            int passengerCount = passengerDao.findByTicketNumber(ticketNumber).size();
+
+            // Update the flight's available seats
+            int newAvailableSeats = flight.getSeatsBooked() - passengerCount;
+            if (newAvailableSeats < 0) {
+                newAvailableSeats = 0; // Ensure it doesn't exceed capacity
+            }
+            flight.setSeatsBooked(newAvailableSeats);
             flightDao.addFlight(flight);
 
+            // Delete the ticket
             ticketDao.deleteByTicketNumber(ticketNumber);
 
             return new ModelAndView("redirect:/index");
         } catch (TicketNotFoundException e) {
             throw e;
         } catch (Exception e) {
-            throw new DatabaseException("Problem cancelling booking", e);
+            throw new DatabaseException("Error cancelling booking", e);
         }
     }
+
 
     @GetMapping("/viewTickets")
     public ModelAndView showTicketReportPage() {

@@ -2,11 +2,15 @@ package com.nor.flightManagementSystem.controller;
 
 import com.nor.flightManagementSystem.bean.Contact;
 import com.nor.flightManagementSystem.bean.Profile;
+import com.nor.flightManagementSystem.bean.VerificationToken;
 import com.nor.flightManagementSystem.exception.DatabaseException;
 import com.nor.flightManagementSystem.exception.UserAlreadyExistsException;
 import com.nor.flightManagementSystem.repository.ContactRepository;
 import com.nor.flightManagementSystem.repository.ProfileRepository;
+import com.nor.flightManagementSystem.repository.VerificationTokenRepository;
+import com.nor.flightManagementSystem.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nor.flightManagementSystem.bean.FlightUser;
 import com.nor.flightManagementSystem.service.FlightUserService;
 
+import java.util.UUID;
+
 @ControllerAdvice
 @RestController
 public class LoginController {
@@ -24,13 +30,17 @@ public class LoginController {
     private final ProfileRepository profileRepository;
     private final ContactRepository contactRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
+    private final VerificationTokenRepository tokenRepository;
 
     @Autowired
-    public LoginController(FlightUserService userService, ProfileRepository profileRepository, ContactRepository contactRepository, PasswordEncoder passwordEncoder) {
+    public LoginController(FlightUserService userService, ProfileRepository profileRepository, ContactRepository contactRepository, PasswordEncoder passwordEncoder, EmailService emailService, VerificationTokenRepository tokenRepository) {
         this.userService = userService;
         this.profileRepository = profileRepository;
         this.contactRepository = contactRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
+        this.tokenRepository = tokenRepository;
     }
 
     @GetMapping("/fms")
@@ -47,9 +57,9 @@ public class LoginController {
         }
 
         String username = authentication.getName();
-        String userType = userService.getTypeByUsername(username);
+        String userRole = userService.getRoleByUsername(username);
 
-        String indexPage = userType.equalsIgnoreCase("Admin") ? "indexAdm" : "indexCust";
+        String indexPage = userRole.equalsIgnoreCase("Admin") ? "indexAdm" : "indexCust";
         ModelAndView mv = new ModelAndView(indexPage);
         mv.addObject("username", username);
         return mv;
@@ -67,14 +77,26 @@ public class LoginController {
             throw new UserAlreadyExistsException("Username already exists. Please choose a different username.");
         }
         try {
-            user.setPassword(passwordEncoder.encode(user.getPassword())); // Encode the password
-            user.setEnabled(true);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.save(user);
-            return new ModelAndView("redirect:/loginpage");
+
+            // Generate the verification token
+            String token = UUID.randomUUID().toString();
+            VerificationToken verificationToken = new VerificationToken(token, user);
+            tokenRepository.save(verificationToken);
+
+            // Send the verification email
+            String verificationUrl = "http://localhost:9090/verify?token=" + token;
+            emailService.sendVerificationEmail(user.getEmail(), verificationUrl);
+
+            return new ModelAndView("registrationSuccessPage");
+        } catch (MailException e) {
+            return new ModelAndView("errorPage").addObject("error", "There was an error sending the verification email.");
         } catch (Exception e) {
             throw new DatabaseException("Problem saving user to the database");
         }
     }
+
 
     @GetMapping("/profile")
     public ModelAndView userProfile() {
@@ -91,7 +113,7 @@ public class LoginController {
 
     @GetMapping("/loginpage")
     public ModelAndView showLoginPage(@RequestParam(required = false) String error) {
-        ModelAndView mv = new ModelAndView("loginPage");
+        ModelAndView mv = new ModelAndView("login");
         if (error != null) {
             mv.addObject("error", "Invalid username or password.");
         }

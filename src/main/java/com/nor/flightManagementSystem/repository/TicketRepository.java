@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface TicketRepository extends MongoRepository<Ticket, Long> {
     Optional<Ticket> findTopByOrderByTicketNumberDesc();
     List<Ticket> findByUsername(String username);
+    Ticket findByTicketNumber(Long ticketNumber);
 }
 

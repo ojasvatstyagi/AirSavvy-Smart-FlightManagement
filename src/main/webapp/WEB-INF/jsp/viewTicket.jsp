@@ -186,7 +186,10 @@
                                         <p>Individual Price: ${passenger.price}</p>
                                         </c:forEach>
                                     </p>
-                                    <a href="/cancelBooking" class="btn btn-danger">Cancel Booking</a>
+                                    <form action="/cancelBooking" method="post">
+                                        <input type="hidden" name="ticketNumber" value="${ticket.ticketNumber}">
+                                        <button type="submit" class="btn btn-danger">Cancel Booking</button>
+                                    </form>
                                     <p style="color: gray"><strong>*</strong> 10% will be deducted as cancellation fee</p>
                             </div>
                             </c:forEach>

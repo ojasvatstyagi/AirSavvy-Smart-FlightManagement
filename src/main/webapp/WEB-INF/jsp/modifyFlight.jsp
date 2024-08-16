@@ -226,68 +226,69 @@ data-sidebar-position="fixed" data-header-position="fixed">
     </header>
     <!--  Header End -->
 
-
     <div class="container-fluid">
-        <div class="container-fluid">
-            <div class="card">
-              <div class="card-body">
-              <h5 class="card-title fw-semibold mb-4">Flight Panel</h5>
-
-                <div class="card-body">
-                    <div class="card mb-0">
+                <div class="container-fluid">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title fw-semibold mb-4">Flight Panel</h5>
+                      <div class="card mb-0">
                         <div class="card-body p-4">
-                            <div class="container">
-                                <h2>Update Flight Details</h2>
+                          <div class="container">
+                            <h2>Update Flight</h2>
 
-                                <form action="/updateFlight" method="post">
-                                    <div class="mb-3">
-                                        <label for="flightNumber" class="form-label">Flight Number</label>
-                                        <select id="flightNumber" name="flightNumber" class="form-control" required>
-                                            <option value="" disabled selected>Select Flight</option>
-                                            <c:forEach var="flight" items="${flights}">
-                                                <option value="${flight.flightNumber}">${flight.flightNumber} -> ${flight.flightName}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="flightName" class="form-label">Flight Name</label>
-                                        <input type="text" class="form-control" id="flightName" name="flightName">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="seatCapacity" class="form-label">Seat Capacity</label>
-                                        <input type="text" class="form-control" id="seatCapacity" name="seatCapacity">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="arrival" class="form-label">Enter Arrival Time</label>
-                                        <input type="time" class="form-control" id="arrival" name="arrival">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="departure" class="form-label">Enter Departure Time</label>
-                                        <input type="time" class="form-control" id="departure" name="departure">
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-evenly;">
-                                      <button type="submit" class="btn btn-primary">Update Flight</button>
-                                      <button type="reset" class="btn btn-danger">Reset</button>
-                                    </div>
-                                </form>
-                                <br>
-                                    <div style="text-align: center;">
-                                        <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
-                                    </div>
+                            <form action="/updateFlight" method="post">
+                              <div class="mb-3">
+                                <label for="flightNumber" class="form-label">Flight Number</label>
+                                <select id="flightNumber" name="flightNumber" class="form-control" required>
+                                    <option value="" disabled selected>Select Flight</option>
+                                    <c:forEach var="flight" items="${flights}">
+                                        <option value="${flight.flightNumber}" ${flight.flightNumber == selectedFlightNumber ? 'selected' : ''}>
+                                            ${flight.flightNumber} -> ${flight.flightName}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                              </div>
+                              <div class="mb-3">
+                                <label for="flightName" class="form-label">Flight Name</label>
+                                <input type="text" class="form-control" id="flightName" name="flightName">
+                              </div>
+                              <div class="mb-3">
+                                <label for="seatCapacity" class="form-label">Seat Capacity</label>
+                                <input type="text" class="form-control" id="seatCapacity" name="seatCapacity">
+                              </div>
+                              <div class="mb-3">
+                                <label for="routeId" class="form-label">Select Route ID</label>
+                                <select id="routeId" name="routeId" class="form-control" required>
+                                  <option value="" disabled selected>Select Route Code</option>
+                                  <c:forEach var="route" items="${routes}">
+                                      <option value="${route.routeId}">${route.routeId} => ${route.sourceAirportCode} to ${route.destinationAirportCode}</option>
+                                  </c:forEach>
+                                </select>
+                              </div>
+                              <div class="mb-3">
+                                <label for="arrival" class="form-label">Enter Arrival Time</label>
+                                <input type="time" class="form-control" id="arrival" name="arrival">
+                              </div>
+                              <div class="mb-3">
+                                <label for="departure" class="form-label">Enter Departure Time</label>
+                                <input type="time" class="form-control" id="departure" name="departure">
+                              </div>
+                              <div style="display: flex; justify-content: space-evenly;">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
+                              </div>
+                            </form>
+                            <div style="text-align: center;">
+                              <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
                             </div>
+                          </div>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+
 
 <script>
         window.onload = function() {

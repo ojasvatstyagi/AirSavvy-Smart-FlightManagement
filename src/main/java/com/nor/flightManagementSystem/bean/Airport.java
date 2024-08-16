@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Document(collection = "airport")
 public class Airport {
-    @Id
     @Size(min = 3, max = 3)
     private String airportCode;
     private String airportLocation;

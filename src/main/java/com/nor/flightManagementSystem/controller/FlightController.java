@@ -5,7 +5,6 @@ import java.util.List;
 import com.nor.flightManagementSystem.exception.DatabaseException;
 import com.nor.flightManagementSystem.exception.DuplicateFlightNumberException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,7 +14,7 @@ import com.nor.flightManagementSystem.repository.FlightDao;
 import com.nor.flightManagementSystem.repository.RouteDao;
 import com.nor.flightManagementSystem.service.FlightService;
 
-@Controller
+@RestController
 public class FlightController {
 
     @Autowired
@@ -43,21 +42,15 @@ public class FlightController {
     public ModelAndView saveFlight(@ModelAttribute("flightRecord") Flight flight,
                                    @RequestParam String returnDeparture,
                                    @RequestParam String returnArrival) {
-        try {
-            Long flightNumber = flight.getFlightNumber();
-            if (flightDao.viewFlight(flightNumber) != null) {
-                throw new DuplicateFlightNumberException("Flight with number " + flightNumber + " already exists.");
-            }
+
+            // Create return flight and save both flights
             Flight returnFlight = flightService.createReturnFlight(flight, returnDeparture, returnArrival);
             flightDao.addFlight(flight);
             flightDao.addFlight(returnFlight);
+
             return new ModelAndView("redirect:/addFlight?message=Flight details added successfully");
-        } catch (DuplicateFlightNumberException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Problem saving flight to the database", e);
-        }
     }
+
 
     @GetMapping("/viewFlights")
     public ModelAndView showAllFlights() {
@@ -74,22 +67,24 @@ public class FlightController {
     public ModelAndView showModifyFlightPage() {
         try {
             List<Flight> flights = flightDao.showAllFlights();
+            List<Route> routes = routeDao.findAllRoutes();
             return new ModelAndView("modifyFlight")
-                    .addObject("flights", flights);
+                    .addObject("flights", flights)
+                    .addObject("routes", routes);
         } catch (Exception e) {
             throw new DatabaseException("Problem retrieving flights for modification", e);
         }
     }
 
-    @PostMapping("/deleteFlight")
-    public ModelAndView deleteFlight(@RequestParam Long flightNumber) {
-        try {
-            flightDao.deleteFlightByFlightNumber(flightNumber);
-            return new ModelAndView("redirect:/modifyFlight?message=Flight deleted successfully");
-        } catch (Exception e) {
-            throw new DatabaseException("Problem deleting flight from the database", e);
-        }
-    }
+//    @PostMapping("/deleteFlight")
+//    public ModelAndView deleteFlight(@RequestParam Long flightNumber) {
+//        try {
+//            flightDao.deleteFlightByFlightNumber(flightNumber);
+//            return new ModelAndView("redirect:/modifyFlight?message=Flight deleted successfully");
+//        } catch (Exception e) {
+//            throw new DatabaseException("Problem deleting flight from the database", e);
+//        }
+//    }
 
     @PostMapping("/updateFlight")
     public ModelAndView updateFlight(@RequestParam Long flightNumber,
@@ -98,13 +93,9 @@ public class FlightController {
                                      @RequestParam String departure,
                                      @RequestParam Long routeId,
                                      @RequestParam Integer seatCapacity) {
-        try {
-            Flight updatedFlight = new Flight(flightNumber, flightName, routeId, seatCapacity, departure, arrival);
-            flightDao.updateFlight(updatedFlight);
-            return new ModelAndView("redirect:/modifyFlight?message=Flight details updated successfully");
-        } catch (Exception e) {
-            throw new DatabaseException("Problem updating flight in the database", e);
-        }
+        Flight newFlight = new Flight(flightNumber, flightName, routeId, seatCapacity, departure, arrival);
+        flightDao.updateFlight(newFlight);
+        return new ModelAndView("redirect:/modifyFlight?message=Flight details updated successfully");
     }
 
     @ExceptionHandler(DuplicateFlightNumberException.class)
