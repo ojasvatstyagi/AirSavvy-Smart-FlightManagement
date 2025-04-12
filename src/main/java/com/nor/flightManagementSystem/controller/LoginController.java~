@@ -6,6 +6,7 @@ import com.nor.flightManagementSystem.bean.VerificationToken;
 import com.nor.flightManagementSystem.exception.DatabaseException;
 import com.nor.flightManagementSystem.exception.UserAlreadyExistsException;
 import com.nor.flightManagementSystem.repository.ContactRepository;
+import com.nor.flightManagementSystem.repository.ProfileRepository;
 import com.nor.flightManagementSystem.repository.VerificationTokenRepository;
 import com.nor.flightManagementSystem.service.EmailService;
 import com.nor.flightManagementSystem.service.ProfileService;
@@ -122,7 +123,7 @@ public class LoginController {
 
 
     @PostMapping("/updateProfile")
-    public ModelAndView updateProfile(
+    public String updateProfile(
             @RequestParam String firstName,
             @RequestParam String lastName,
             @RequestParam String phone,
@@ -137,11 +138,11 @@ public class LoginController {
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return new ModelAndView("redirect:/profile");
+        return "redirect:/profile";
     }
 
     @PostMapping("/uploadProfileImage")
-    public ModelAndView uploadProfileImage(
+    public String uploadProfileImage(
             @RequestParam("profileImage") MultipartFile file,
             RedirectAttributes redirectAttributes) throws IOException {
 
@@ -149,7 +150,7 @@ public class LoginController {
         profileService.uploadProfileImage(username, file.getBytes());
 
         redirectAttributes.addFlashAttribute("message", "Profile image updated successfully.");
-        return new ModelAndView("redirect:/profile");
+        return "redirect:/profile";
     }
 
 

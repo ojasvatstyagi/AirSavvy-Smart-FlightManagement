@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface FlightUserRepository extends MongoRepository<FlightUser, String> {
 	Optional<FlightUser> findByUsername(String username);
 	Optional<FlightUser> findByEmail(String email);
-	boolean existsByUsername(String username);
+	
 }

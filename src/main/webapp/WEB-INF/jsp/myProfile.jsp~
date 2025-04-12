@@ -39,6 +39,7 @@
                                         </div>
                                         <button type="submit" class="btn upload-button">Upload Image</button>
                                     </div>
+                                    <small id="fileNameDisplay" class="text-white mt-1 d-block"></small>
                                 </form>
                                 <h5 class="mt-3">${profile.firstName} ${profile.lastName}</h5>
                                 <p class="username">${flightuser.username}</p>
@@ -110,6 +111,9 @@
         }
 
         function previewFileName(input) {
+            const fileName = input.files[0]?.name || '';
+            document.getElementById('fileNameDisplay').textContent = fileName ? 'Selected: ' + fileName : '';
+
             // Preview image if possible
             if (input.files && input.files[0]) {
                 const reader = new FileReader();

@@ -1,29 +1,38 @@
 package com.nor.flightManagementSystem.service;
 
-import com.nor.flightManagementSystem.bean.FlightUser;
-import com.nor.flightManagementSystem.repository.FlightUserRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.nor.flightManagementSystem.bean.FlightUser;
+import com.nor.flightManagementSystem.repository.FlightUserRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
 @Service
-@RequiredArgsConstructor
 public class FlightUserService implements UserDetailsService {
 
     @Autowired
     private FlightUserRepository repository;
 
+    @Getter
+    private String role;
+
+    @Transactional
     public void save(FlightUser user) {
         repository.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findById(username)
+        FlightUser user = repository.findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        role = user.getRole();
+        return user;
     }
 
     public boolean userExists(String username) {
@@ -35,16 +44,10 @@ public class FlightUserService implements UserDetailsService {
     }
 
     public String getRoleByUsername(String username) {
-        return repository.findByUsername(username)
-                .map(FlightUser::getRole)
-                .orElse(null);
+        return repository.findByUsername(username).get().getRole();
     }
 
     public FlightUser findByEmail(String email) {
-        return repository.findByEmail(email).orElse(null);
-    }
-
-    public void deleteUser(String username) {
-        repository.deleteById(username);
+        return repository.findByEmail(email).orElse(null); // Handle the case where user is not found
     }
 }

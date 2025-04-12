@@ -25,11 +25,11 @@ public class Profile {
     private String phone;
     private String address;
 
-    @Field("aadhareNumber")
-    private Long aadhareNumber;
+    @Field("aadharNumber")
+    private Long aadharNumber;
 
     @DBRef
-    private FlightUser user; // Reference to the associated FlightUser
+    private FlightUser user;
 
     private byte[] photo;
 

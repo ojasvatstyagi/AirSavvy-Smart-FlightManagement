@@ -33,23 +33,41 @@ public class VerificationController {
         VerificationToken verificationToken = tokenRepository.findByToken(token);
 
         if (verificationToken == null) {
-            return new ModelAndView("errorPage").addObject("error", "Invalid verification token.");
+            return new ModelAndView("errorPage")
+                    .addObject("error", "Invalid verification token.");
         }
 
         if (verificationToken.getExpiryTime().before(new Date())) {
-            return new ModelAndView("errorPage").addObject("error", "Verification token expired.");
+            return new ModelAndView("errorPage")
+                    .addObject("error", "Verification token expired. Please request a new verification email.");
         }
 
         FlightUser user = userService.findByUsername(verificationToken.getUser().getUsername());
         if (user == null) {
-            return new ModelAndView("errorPage").addObject("error", "User not found.");
+            return new ModelAndView("errorPage")
+                    .addObject("error", "User associated with the token not found.");
         }
 
-        if (!user.isEnabled()) {
-            user.setEnabled(true);
-            userService.save(user);
-            profileService.createEmptyProfileForUser(user);
+        if (user.isEnabled()) {
+            return new ModelAndView("successPage");
         }
+
+        // Enable and save user
+        user.setEnabled(true);
+        userService.save(user);
+
+        // Create empty profile on verification
+        Profile profile = new Profile(
+                user.getUsername(),
+                null,
+                null,
+                null,
+                user.getEmail(),
+                null,
+                null,
+                null
+        );
+        profileRepository.save(profile);
 
         return new ModelAndView("successPage");
     }
