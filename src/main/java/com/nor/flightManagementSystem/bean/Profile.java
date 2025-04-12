@@ -8,9 +8,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.validation.constraints.Size;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -23,12 +24,15 @@ public class Profile {
     private String lastName;
     private String phone;
     private String address;
-    @Id
-    @Size(min = 12, max = 12)
-    private String aadhareNumber;
+
+    @Field("aadhareNumber")
+    private Long aadhareNumber;
+
     @DBRef
-    private FlightUser user; // Use FlightUser reference
+    private FlightUser user; // Reference to the associated FlightUser
+
     private byte[] photo;
+
     @Version
     private Long version;
 }

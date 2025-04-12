@@ -2,6 +2,9 @@ spring.mvc.view.prefix=/WEB-INF/jsp/
 spring.mvc.view.suffix=.jsp
 server.port=9090
 
+spring.web.resources.add-mappings=false
+
+
 # Database configuration
 spring.data.mongodb.uri=mongodb://localhost:27017/flightdb
 

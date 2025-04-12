@@ -100,58 +100,70 @@ public class LoginController {
         }
     }
 
-        @GetMapping("/profile")
-        public ModelAndView userProfile() {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String username = authentication.getName();
 
-            // Fetch the user and profile
+    @GetMapping("/profile")
+    public ModelAndView userProfile() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+//
+//        FlightUser flightUser = userService.findByUsername(username);
+//        Profile profile = profileRepository.findByUser_Username(username);
+//
+//        if (profile == null) {
+//            profile = new Profile();
+//            profile.setUser(flightUser); // Associate the profile with the FlightUser
+//        }
+//
+//        return new ModelAndView("myProfile")
+//                .addObject("profile", profile)
+//                .addObject("flightuser", flightUser);
+        return new ModelAndView("myProfile");
+    }
+
+
+    @PostMapping("/updateProfile")
+    public String updateProfile(
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String phone,
+            @RequestParam String address,
+            @RequestParam(required = false) Long aadhareNumber, // Allow null if not provided yet.
+            RedirectAttributes redirectAttributes) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Profile profile = profileRepository.findByUser_Username(username);
+        if (profile == null) {
             FlightUser flightUser = userService.findByUsername(username);
-            Profile profile = profileRepository.findByUser_Username(username);
-
-            if (profile == null) {
-                profile = new Profile(); // Create a new profile if not found
-            }
-
-            return new ModelAndView("myProfile")
-                    .addObject("profile", profile)
-                    .addObject("flightuser", flightUser);
+            profile = new Profile();
+            profile.setUser(flightUser);
         }
 
-        @PostMapping("/updateProfile")
-        public String updateProfile(
-                @RequestParam String email,
-                @RequestParam String phone,
-                @RequestParam String address,
-                @RequestParam String aadhareNumber,
-                RedirectAttributes redirectAttributes) {
-
-            // Get the username from the security context
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String username = authentication.getName();
-
-            // Fetch the profile and update it
-            Profile profile = profileRepository.findByUser_Username(username);
-            if (profile != null) {
-                profile.setPhone(phone);
-                profile.setAddress(address);
-                profile.setAadhareNumber(aadhareNumber);
-                profileRepository.save(profile);
-
-                // Update user email
-                FlightUser flightUser = userService.findByUsername(username);
-                flightUser.setEmail(email);
-                userService.save(flightUser);
-
-                redirectAttributes.addFlashAttribute("message", "Profile updated successfully");
-            } else {
-                redirectAttributes.addFlashAttribute("error", "Profile not found");
+        // Optionally, validate the Aadhaar number here (if provided)
+        if (aadhareNumber != null) {
+            // For example, check if it has 12 digits (by converting to String and checking length)
+            if (String.valueOf(aadhareNumber).length() != 12) {
+                redirectAttributes.addFlashAttribute("error", "Aadhaar number must be exactly 12 digits.");
+                return "redirect:/profile";
             }
-
-            return "redirect:/profile"; // Redirect to the profile page
         }
 
-        @PostMapping("/uploadProfileImage")
+        // Update the profile fields
+        profile.setFirstName(firstName);
+        profile.setLastName(lastName);
+        profile.setPhone(phone);
+        profile.setAddress(address);
+        profile.setAadhareNumber(aadhareNumber);
+
+        profileRepository.save(profile);
+        redirectAttributes.addFlashAttribute("message", "Profile updated successfully");
+        return "redirect:/profile";
+    }
+
+
+    @PostMapping("/uploadProfileImage")
         public String uploadProfileImage(
                 @RequestParam("profileImage") MultipartFile file,
                 RedirectAttributes redirectAttributes) throws IOException {

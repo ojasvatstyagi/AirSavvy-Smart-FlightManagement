@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import com.nor.flightManagementSystem.service.FlightUserService;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 
 
 @SuppressWarnings("deprecation")
@@ -41,6 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.permitAll())
 				.logout(logout -> logout
 						.logoutSuccessUrl("/index"));
-		http.csrf(csrf -> csrf.disable());
+		http.csrf(AbstractHttpConfigurer::disable);
 	}
 }

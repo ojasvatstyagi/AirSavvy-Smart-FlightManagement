@@ -1,0 +1,38 @@
+package com.nor.flightManagementSystem.controller;
+
+import com.nor.flightManagementSystem.service.AiAssistantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Collections;
+import java.util.Map;
+
+@Controller
+@RequestMapping("/ai")
+public class AiAssistantController {
+
+    private final AiAssistantService aiAssistantService;
+
+    @Autowired
+    public AiAssistantController(AiAssistantService aiAssistantService) {
+        this.aiAssistantService = aiAssistantService;
+    }
+
+    // Mapping for AI Chat Page
+    @GetMapping("/chat")
+    public String chatPage() {
+        return "ai-chat";
+    }
+
+    // Mapping to handle AI queries
+    @GetMapping("/ask")
+    @ResponseBody
+    public Map<String, String> askAI(@RequestParam String query) {
+        String response = aiAssistantService.getAiResponse(query);
+        return Collections.singletonMap("response", response);
+    }
+}

@@ -458,6 +458,8 @@
       </div>
     </div>
   </div>
+  <jsp:include page="aiAssistant.jsp" />
+
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>

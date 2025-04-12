@@ -86,7 +86,7 @@
                           <div class="col-6 mb-3">
                             <h6>Aadhare Number</h6>
                             <p class="text-muted">
-                              <input type="text" name="aadhareNumber" value="${profile.aadhareNumber}" class="form-control" placeholder="Aadhare Number" disabled />
+                                <input type="text" name="aadhareNumber" value="${profile.aadhareNumber}" class="form-control" placeholder="Aadhare Number" disabled />
                             </p>
                           </div>
                         </div>

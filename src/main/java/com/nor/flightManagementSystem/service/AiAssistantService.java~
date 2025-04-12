@@ -1,0 +1,35 @@
+package com.nor.flightManagementSystem.service;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
+
+@Service
+public class AiAssistantService {
+
+    private static final String API_URL = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateText?key=AIzaSyCxQzC57DSHa3j_QWeEy6CwMApBHptjavI";
+
+    public String getAiResponse(String userQuery) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+
+        String requestBody = "{ \"prompt\": { \"text\": \"" + userQuery + "\" } }";
+
+        HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
+
+        ResponseEntity<Map> response = restTemplate.exchange(API_URL, HttpMethod.POST, entity, Map.class);
+
+        if (response.getBody() != null && response.getBody().containsKey("candidates")) {
+            return response.getBody().get("candidates").toString();
+        } else {
+            return "Sorry, I couldn't understand your query.";
+        }
+    }
+}
