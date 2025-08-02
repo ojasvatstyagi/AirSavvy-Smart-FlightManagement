@@ -1,14 +1,14 @@
 package com.nor.flightManagementSystem.controller;
 
 import com.nor.flightManagementSystem.bean.FlightUser;
-import com.nor.flightManagementSystem.bean.Profile;
 import com.nor.flightManagementSystem.bean.VerificationToken;
 import com.nor.flightManagementSystem.repository.ProfileRepository;
 import com.nor.flightManagementSystem.repository.VerificationTokenRepository;
 import com.nor.flightManagementSystem.service.EmailService;
 import com.nor.flightManagementSystem.service.FlightUserService;
 import com.nor.flightManagementSystem.service.ProfileService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.UUID;
 
 @RestController
-@AllArgsConstructor
 public class VerificationController {
 
     private final VerificationTokenRepository tokenRepository;
@@ -27,6 +26,22 @@ public class VerificationController {
     private final EmailService emailService;
     private final ProfileRepository profileRepository;
     private final ProfileService profileService;
+
+    @Value("${app.base-url}")
+    private String appBaseUrl;
+
+    @Autowired
+    public VerificationController(VerificationTokenRepository tokenRepository,
+                                  FlightUserService userService,
+                                  EmailService emailService,
+                                  ProfileRepository profileRepository,
+                                  ProfileService profileService) {
+        this.tokenRepository = tokenRepository;
+        this.userService = userService;
+        this.emailService = emailService;
+        this.profileRepository = profileRepository;
+        this.profileService = profileService;
+    }
 
     @GetMapping("/verify")
     public ModelAndView verifyUser(@RequestParam("token") String token) {
@@ -68,7 +83,7 @@ public class VerificationController {
         tokenRepository.save(verificationToken);
 
         // Send email
-        String verificationUrl = "http://localhost:9090/verify?token=" + token;
+        String verificationUrl = appBaseUrl + "/verify?token=" + token;
         emailService.sendVerificationEmail(user.getEmail(), verificationUrl);
 
         return new ModelAndView("verificationEmailSentPage");

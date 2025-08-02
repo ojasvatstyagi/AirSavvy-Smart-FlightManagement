@@ -10,6 +10,7 @@ import com.nor.flightManagementSystem.repository.VerificationTokenRepository;
 import com.nor.flightManagementSystem.service.EmailService;
 import com.nor.flightManagementSystem.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,6 +37,9 @@ public class LoginController {
     private final VerificationTokenRepository tokenRepository;
     private final ProfileService profileService;
 
+    @Value("${app.base-url}")
+    private String appBaseUrl;
+
     @Autowired
     public LoginController(FlightUserService userService, ContactRepository contactRepository, PasswordEncoder passwordEncoder, EmailService emailService, VerificationTokenRepository tokenRepository, ProfileService profileService) {
         this.userService = userService;
@@ -46,12 +50,12 @@ public class LoginController {
         this.profileService = profileService;
     }
 
-    @GetMapping("/fms")
+    @GetMapping("/")
     public ModelAndView homePage() {
         return new ModelAndView("home");
     }
 
-    @GetMapping({"/index", "/"})
+    @GetMapping({"/index"})
     public ModelAndView indexPage() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -88,7 +92,7 @@ public class LoginController {
             VerificationToken verificationToken = new VerificationToken(token, user);
             tokenRepository.save(verificationToken);
 
-            String verificationUrl = "http://localhost:9090/verify?token=" + token;
+            String verificationUrl = appBaseUrl + "/verify?token=" + token;
             emailService.sendVerificationEmail(user.getEmail(), verificationUrl);
 
             return new ModelAndView("registrationSuccessPage");
