@@ -54,7 +54,6 @@
                     <a class="text-primary fw-bold ms-2" href="/register">Create an account</a>
                   </div>
                 </form>
-
               </div>
             </div>
           </div>

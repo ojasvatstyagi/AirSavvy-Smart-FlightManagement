@@ -22,6 +22,6 @@
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
-<script src="/assets/js/chat-script.js"></script>
+    <script src="/assets/js/chat-script.js"></script>
 </body>
 </html>

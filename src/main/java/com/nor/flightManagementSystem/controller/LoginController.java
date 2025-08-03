@@ -55,7 +55,7 @@ public class LoginController {
         return new ModelAndView("home");
     }
 
-    @GetMapping({"/index"})
+    @GetMapping("/index")
     public ModelAndView indexPage() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 

@@ -8,6 +8,32 @@ function toggleChat() {
     chatBox.style.display = chatBox.classList.contains("visible") ? "flex" : "none";
 }
 
+/**
+ * Convert markdown-style text to HTML tags for simple formatting.
+ * Supports **bold**, *italic*, and # headings.
+ */
+function markdownToHTML(text) {
+    return text
+        // Escape HTML special characters to prevent injection
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+
+        // Headers
+        .replace(/^### (.*)$/gm, '<h3>$1</h3>')
+        .replace(/^## (.*)$/gm, '<h2>$1</h2>')
+        .replace(/^# (.*)$/gm, '<h1>$1</h1>')
+
+        // Bold **bold**
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+
+        // Italic *italic*
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+
+        // Line breaks
+        .replace(/\n/g, '<br/>');
+}
+
 function createMessageElement(type, text, isTyping = false) {
     const msg = document.createElement("div");
     msg.className = `message ${type}-message`;
@@ -15,7 +41,8 @@ function createMessageElement(type, text, isTyping = false) {
     if (isTyping) {
         msg.innerHTML = `<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`;
     } else {
-        msg.innerHTML = '<span>' + text.replace(/\n/g, '<br/>') + '</span>';
+        // Convert markdown response to HTML
+        msg.innerHTML = markdownToHTML(text);
     }
 
     return msg;
@@ -27,12 +54,14 @@ function sendMessage() {
     const query = userInput.value.trim();
     if (!query) return;
 
+    // Add user message
     const userMsg = createMessageElement("user", query);
     chatBody.appendChild(userMsg);
     saveToHistory("user", query);
     userInput.value = "";
     chatBody.scrollTop = chatBody.scrollHeight;
 
+    // Show typing indicator
     const typingMsg = createMessageElement("ai", "", true);
     chatBody.appendChild(typingMsg);
     chatBody.scrollTop = chatBody.scrollHeight;
