@@ -42,14 +42,22 @@ public class FlightController {
     public ModelAndView saveFlight(@ModelAttribute("flightRecord") Flight flight,
                                    @RequestParam String returnDeparture,
                                    @RequestParam String returnArrival) {
+        try {
+            Long lastFlightNumber = flightDao.findMaxFlightNumber();
+            Long newFlightNumber = lastFlightNumber + 1;
+            flight.setFlightNumber(newFlightNumber);
 
-            // Create return flight and save both flights
             Flight returnFlight = flightService.createReturnFlight(flight, returnDeparture, returnArrival);
+
             flightDao.addFlight(flight);
             flightDao.addFlight(returnFlight);
 
             return new ModelAndView("redirect:/addFlight?message=Flight details added successfully");
+        } catch (Exception e) {
+            throw new DatabaseException("Error saving flight", e);
+        }
     }
+
 
 
     @GetMapping("/viewFlights")

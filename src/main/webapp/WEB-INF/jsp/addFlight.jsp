@@ -22,7 +22,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="./index" class="text-nowrap logo-img">
             <img src="../assets/images/logos/bird_2.jpg" width="180" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -221,16 +221,12 @@
 
                     <form action="/addFlight" method="post">
                       <div class="mb-3">
-                        <label for="flightNumber" class="form-label">Flight Number</label>
-                        <input type="text" class="form-control" id="flightNumber" name="flightNumber">
-                      </div>
-                      <div class="mb-3">
                         <label for="flightName" class="form-label">Flight Name</label>
-                        <input type="text" class="form-control" id="flightName" name="flightName">
+                        <input type="text" class="form-control" id="flightName" name="flightName" required>
                       </div>
                       <div class="mb-3">
                         <label for="seatCapacity" class="form-label">Seat Capacity</label>
-                        <input type="text" class="form-control" id="seatCapacity" name="seatCapacity">
+                        <input type="number" min="1" class="form-control" id="seatCapacity" name="seatCapacity" required>
                       </div>
                       <div class="mb-3">
                         <label for="routeId" class="form-label">Select Route ID</label>
@@ -243,29 +239,33 @@
                       </div>
                       <div class="mb-3">
                         <label for="arrival" class="form-label">Enter Arrival Time</label>
-                        <input type="time" class="form-control" id="arrival" name="arrival">
+                        <input type="time" class="form-control" id="arrival" name="arrival" required>
                       </div>
                       <div class="mb-3">
                         <label for="departure" class="form-label">Enter Departure Time</label>
-                        <input type="time" class="form-control" id="departure" name="departure">
+                        <input type="time" class="form-control" id="departure" name="departure" required>
                       </div>
                       <div class="mb-3">
                         <label for="returnArrival" class="form-label">Enter Return Arrival Time</label>
-                        <input type="time" class="form-control" id="returnArrival" name="returnArrival">
+                        <input type="time" class="form-control" id="returnArrival" name="returnArrival" required>
                       </div>
                       <div class="mb-3">
                         <label for="returnDeparture" class="form-label">Enter Return Departure Time</label>
-                        <input type="time" class="form-control" id="returnDeparture" name="returnDeparture">
+                        <input type="time" class="form-control" id="returnDeparture" name="returnDeparture" required>
                       </div>
-                      <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+                      <!-- Remove or update this checkbox -->
+                      <div class="mb-3 form-check" style="display:none;">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" disabled checked>
+                        <label class="form-check-label" for="exampleCheck1">Auto-generated Flight Number</label>
                       </div>
+
                       <div style="display: flex; justify-content: space-evenly;">
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                       </div>
                     </form>
+
                     <div style="text-align: center;">
                       <a class="text-primary fw-bold ms-2" href="/index">Back Home</a>
                     </div>

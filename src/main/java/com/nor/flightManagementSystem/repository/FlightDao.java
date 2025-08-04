@@ -12,5 +12,7 @@ public interface FlightDao {
 	List<Flight> findFlightsByRouteId(Long routeId);
 	void deleteFlightByFlightNumber(Long flightNumber);
 	Flight findByFlightNumber(Long flightNumber);
+
+    Long findMaxFlightNumber();
 }
 

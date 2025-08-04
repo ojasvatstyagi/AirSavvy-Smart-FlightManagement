@@ -46,6 +46,16 @@ public class FlightDaoImpl implements FlightDao {
 	}
 
 	@Override
+	public Long findMaxFlightNumber() {
+		List<Flight> flights = flightRepository.findTopByOrderByFlightNumberDesc();
+		if (flights.isEmpty()) {
+			return 1001L;
+		} else {
+			return flights.get(0).getFlightNumber();
+		}
+	}
+
+	@Override
 	public void updateFlight(Flight flight) {
 		try {
 			Query query = new Query(Criteria.where("_id").is(flight.getFlightNumber()));
